@@ -152,17 +152,17 @@
                             <?php endif; ?>
                                     <tr>
                                         <td  data-label="Hora"  class="text-md-center"><?php echo convertir_hora($partido->hora); ?></td>
-                                        <td   data-label="Equipo 1"  class="text-md-center">
-                                            <img src="/corte/banderas/<?php echo ($partido->codigo1); ?>.png"><br>
+                                        <td   data-label="Equipo 1"  class="text-md-center" width="25%">
+                                            <img src="/images/<?php echo ($partido->bandera_equipo1); ?>"><br>
                                             <?php echo ($this->equipo_array[$partido->equipo1]); ?>
                                         </td>
-                                        <td   data-label="vs"  class="text-md-center">
+                                        <td   data-label="vs"  class="text-md-center" >
                                             <?php if ($partido->ganador != 0) { echo ($partido->valor1); } ?>
                                             -
                                             <?php if ($partido->ganador != 0) { echo ($partido->valor2); } ?>
                                         </td>
-                                        <td   data-label="Equipo 2"  class="text-md-center">
-                                            <img src="/corte/banderas/<?php echo ($partido->codigo2); ?>.png"><br>
+                                        <td   data-label="Equipo 2"  class="text-md-center"  width="25%">
+                                            <img src="/images/<?php echo ($partido->bandera_equipo2); ?>"><br>
                                             <?php echo ($this->equipo_array[$partido->equipo2]); ?>
                                         </td>
                                         <td   data-label="Ganador"  class="text-md-center">

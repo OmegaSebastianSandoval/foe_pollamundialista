@@ -224,7 +224,7 @@ class Administracion_mainController extends Controllers_Abstract
 			foreach ($resultadoPorUsuario as $posicion => $resultadoInd) {
 
 
-
+// print_r($resultadoInd);
 				$fase = $resultadoInd->fase;
 
 				$marcador1Partido = $resultadoInd->marcador1Partido;
@@ -241,18 +241,26 @@ class Administracion_mainController extends Controllers_Abstract
 
 				echo "partido : " . $resultadoInd->partido .  "equipo1usuario: " . $marcador1Resultado . " usuario" . $usuarioId;
 
-				echo "<br>"; */
-
+				echo "<br>";
+ */
 
 				#region FASE DE GRUPOS
 
 				//FASE DE GRUPOS
 				if ($fase == 1) {
+					/* echo "marcador1Resultado: " . $marcador1Resultado .  " <br>  marcador2Resultado: " . $marcador2Resultado . " <br>  ganadorResultado: " . $ganadorResultado;
 
+					echo "<br>"; */
+	
+
+					
 
 					// Validación inicial: asegurar que no hay valores vacíos
-					if (!empty($marcador1Resultado) && !empty($marcador2Resultado) && $ganadorResultado !== null) {
+					if (($marcador1Resultado !== null || $marcador1Resultado == 0) && 
+					($marcador2Resultado !== null || $marcador2Resultado == 0) && 
+					$ganadorResultado !== null) {
 						// Comprobando acierto de marcador exacto
+					
 						if ($marcador1Partido == $marcador1Resultado && $marcador2Partido == $marcador2Resultado) {
 							$marcadores++;
 							$puntos += $acertarMarcador1Fase;  // Puntos por acertar al marcador exacto
@@ -266,6 +274,8 @@ class Administracion_mainController extends Controllers_Abstract
 								$puntos += $empate1Fase;  // Puntos adicionales por acertar un empate
 							}
 						} else {
+					
+
 
 							// Comprobando ganador o empate si no acertó el marcador exacto
 							if ($ganadorPartido == $ganadorResultado && $ganadorPartido != -1) {
@@ -521,25 +531,25 @@ class Administracion_mainController extends Controllers_Abstract
 				$clasificado_cuartos_e1, $clasificado_cuartos_e2, $clasificado_cuartos_e3, $clasificado_cuartos_e4,
 				$clasificado_cuartos_e5, $clasificado_cuartos_e6, $clasificado_cuartos_e7, $clasificado_cuartos_e8
 			];
-			echo "<pre>";
+			/* echo "<pre>";
 print_r($clasificadosCuartos);
 echo "</pre>";
-
+ */
 
 			// Iterar sobre los equipos de cuartos de final
 			for ($i = 1; $i <= 8; $i++) {
-				echo "entro cuartos" .$i;
-				echo "<br>";
+				/* echo "entro cuartos" .$i;
+				echo "<br>"; */
 				$equipoCuartos = $cuartos->{'cuartos_e' . $i};
-				echo $equipoCuartos;
-				echo "<br>";
+				/*echo $equipoCuartos;
+				echo "<br>"; */
 
 				if ($equipoCuartos != '') {
 					if (in_array($equipoCuartos, $clasificadosCuartos)) {
 						$puntos += $clasificadoCuartos;
 						$otros++;
-						echo $puntos;
-						echo "<br>";
+						/* echo $puntos;
+						echo "<br>"; */
 					}
 				}
 			}
@@ -551,9 +561,9 @@ echo "</pre>";
 			//CLASIFICADOS A SEMIS
 			//$semis = $semisModel->getList("usuario = $usuarioId", "")[0];
 			$semis = $resultadoPorUsuario[0];
-			echo "<pre>";
+			/* echo "<pre>";
 			print_r($semis);
-			echo "</pre>";
+			echo "</pre>"; */
 
 			$clasificados = [$clasificado_semis_e1, $clasificado_semis_e2, $clasificado_semis_e3, $clasificado_semis_e4];
 			// Iterar sobre los equipos de semifinales
