@@ -1,0 +1,255 @@
+@media (max-width:991px) {
+
+
+    /* HEADER */
+    .logo img {
+        width: 100%;
+        max-width: 130px;
+    }
+
+
+    .header-inferior>.container {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    header .btn-amarillo {
+        font-size: 9px !important;
+        margin-right: 8px;
+    }
+
+    /*-- Responsive Menus Bar CSS--*/
+    .hamburger {
+        display: block;
+    }
+
+    .btn-amarillo,
+    .btn-vinotinto2 {
+        padding: 9px;
+        font-size: 14px;
+    }
+
+    .wrapper {
+        padding: 15px;
+        max-width: 720px;
+    }
+
+    .toggle-btn {
+        display: block;
+    }
+
+
+    .nav-menus {
+        position: absolute;
+        width: 100%;
+        background: var(--grisC);
+        top: 83px;
+        right: 0;
+        display: none;
+        padding: 0px 15px;
+        box-sizing: border-box;
+        z-index: 4;
+        opacity: 0;
+        /* Inicialmente oculta el menú */
+        transform: scaleY(0);
+        /* Inicialmente escala en Y a 0 (altura) */
+        transform-origin: top;
+        /* Alinea la transformación en la parte superior */
+        transition: opacity 0.3s, transform 0.3s;
+        /* Aplica transiciones a la opacidad y la transformación */
+        height: auto;
+        padding: 15px;
+    }
+
+    .nav-menus::before {
+        content: "";
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid var(--azul);
+        position: absolute;
+        top: -10px;
+        right: 35px;
+    }
+
+    .nav-menus a {
+        padding: 10px 12px;
+
+    }
+
+    .sub-menus ul {
+        position: static;
+    }
+
+    .sub-menus ul::before {
+        display: none;
+    }
+
+    .nav-menus li {
+        padding: 0px;
+        height: 45px;
+    }
+
+    .nav-menus li a {
+        display: flex;
+        margin: 15px 0px;
+    }
+
+    .nav-menus li.active>.nav-l:after {
+        height: 5px;
+    }
+
+    .botonera a {
+        width: fit-content;
+      
+    }
+
+    .w-md-50 {
+        width: 50% !important;
+    }
+
+
+}
+
+@media (max-width:771px) {
+    .info-header {
+        font-size: 10px;
+        margin-left: 8px;
+    }
+
+    .fondo_sesion {
+       
+        font-size: 12px;
+    }
+    .tabla3_sm_none{
+         display: none !important;  
+    }
+    
+  /* BANNER INCIIO */
+
+  .carousel-control-prev-icono {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+  }
+
+  .carousel-control-next-icono {
+
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+
+  }
+  .carousel-control-next,
+  .carousel-control-prev {
+    width: 12%;
+  }
+
+
+
+  /* tabla */
+
+
+    .contenedor-tabla table {
+        border: 0;
+    }
+
+    .contenedor-tabla table caption {
+        font-size: 1.3em;
+    }
+
+    .contenedor-tabla table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    .contenedor-tabla table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: .625em;
+    }
+
+    .contenedor-tabla table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: .8em;
+        text-align: right;
+        width: 100%;
+    }
+
+    .contenedor-tabla table td::before {
+        /*
+        * aria-label has no advantage, it won't be read inside a .contenedor-tabla table
+        content: attr(aria-label);
+        */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .contenedor-tabla table td:last-child {
+        border-bottom: 0;
+    }
+
+    .contenedor-tabla table>tbody>tr:nth-of-type(odd)>* {
+        background-color: var(--grisC);
+    }
+
+
+/* inicio */
+
+    .caja-resultados h2{
+       
+        border-right: 0;
+       
+    }
+
+    
+    /* *************************
+   PARTIDOS INICIO
+    *************************** */
+
+    .contenedor-filtros {
+        display: block !important;
+    }
+
+    .contenedor-filtros .input_field {
+        width: 49%;
+        font-size: 12px;
+        margin-bottom: 5px;
+        background: #FFF;
+    }
+
+    .contenedor-filtros .btn-verde,
+    .contenedor-filtros .btn-azul {
+        width: 48%;
+
+        text-wrap: nowrap;
+    }
+
+    /* *************************
+   PARTIDOS FIN
+    *************************** */
+
+}
+
+
+@media (max-width:601px) {
+
+    .enlace-header {
+        display: none;
+    }
+
+    .header-top {
+        padding: 6px 0px;
+    }
+    .only-phone{
+        display: block !important;
+      }
+}
