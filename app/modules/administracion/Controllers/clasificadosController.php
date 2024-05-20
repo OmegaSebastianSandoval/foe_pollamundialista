@@ -224,7 +224,7 @@ class Administracion_clasificadosController extends Administracion_mainControlle
 			$data['log_tipo'] = 'EDITAR CLASIFICADO';
 			$logModel = new Administracion_Model_DbTable_Log();
 			$logModel->insert($data);}
-		//header('Location: '.$this->route.''.'');
+		header('Location: '.$this->route.''.'');
 	}
 
 	/**

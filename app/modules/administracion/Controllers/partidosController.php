@@ -218,7 +218,7 @@ class Administracion_partidosController extends Administracion_mainController
 			$logModel = new Administracion_Model_DbTable_Log();
 			$logModel->insert($data);
 		}
-		//header('Location: ' . $this->route . '' . '');
+		header('Location: ' . $this->route . '' . '');
 	}
 
 	/**
