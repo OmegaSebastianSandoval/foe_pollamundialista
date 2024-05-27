@@ -33,7 +33,9 @@ class Administracion_Model_DbTable_Usuariospolla extends Db_Table
 		$user_level = $data['user_level'];
 		$user_state = $data['user_state'];
 		$user_user = $data['user_user'];
-		$user_password = $data['user_password'];
+		
+		$user_password = password_hash($data['user_password'], PASSWORD_DEFAULT);
+
 		$user_delete = $data['user_delete'];
 		$user_current_user = $data['user_current_user'];
 		$user_zona = $data['user_zona'];
@@ -102,11 +104,16 @@ class Administracion_Model_DbTable_Usuariospolla extends Db_Table
         return $res;
     }
 	public function autenticateUser($user,$password){
+		
         $resUser=$this->searchUserByUser($user);
+		
         if ($resUser->user_id) {
+			
             if(password_verify($password,$resUser->user_password)){
+			
                 return  true;
             }else{
+			
                 return false;
             }
         } else {

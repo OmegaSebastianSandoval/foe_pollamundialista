@@ -77,7 +77,10 @@ class Page_inscribaseController extends Page_mainController
 		$data['user_state'] = 1;
 		$data['user_area'] = "";
 		$data['user_user'] = $this->_getSanitizedParam("cedula");
-		$data['user_password'] = $this->_getSanitizedParam("clave");
+
+	
+		$data['user_password'] =  $this->_getSanitizedParam("clave");
+		
 		$data['user_celular'] = $this->_getSanitizedParam("celular");
 
 		$data['user_puntos'] = 0;
@@ -131,9 +134,10 @@ class Page_inscribaseController extends Page_mainController
 		
 		$user = $this->_getSanitizedParam("cedula");
 		$password = $this->_getSanitizedParam("clave");
-
+	
 		$userModel = new Administracion_Model_DbTable_Usuariospolla();
 		if ($userModel->autenticateUser($user, $password) == true) {
+			
 			$existe2 = $userModel->getList(" user_user='$user' AND user_paso='4' ", "")[0];
 
 			Session::getInstance()->set("kt_login_id", $existe2->user_id);
@@ -145,6 +149,7 @@ class Page_inscribaseController extends Page_mainController
 			header("Location:/page/jugar/"); 
 			header("Location:/page/jugar");
 		} else {
+			
 			header("Location:/page/inscribase/login/?cedula=" . $user . "&error=1");
 		}
 	}
