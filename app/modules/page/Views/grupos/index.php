@@ -38,7 +38,7 @@
 								<?php if ($equipo->grupo == $grupo->id) : ?>
 									<tr>
 										<td data-label="Bandera" class="text-md-center">
-											<img src="/images/banderas/<?php echo ($equipo->codigo); ?>.png" alt="Bandera de <?php echo ($equipo->nombre); ?>">
+											<img src="/images/<?php echo ($equipo->bandera); ?>" alt="Bandera de <?php echo ($equipo->nombre); ?>">
 										</td>
 										<td data-label="Equipo" class="text-md-center"><?php echo ($equipo->nombre); ?></td>
 										<td data-label="PJ" class="text-md-center"><?php echo ($equipo->pj); ?></td>

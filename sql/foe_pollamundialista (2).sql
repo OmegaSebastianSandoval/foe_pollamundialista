@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2024 at 06:49 AM
+-- Generation Time: May 27, 2024 at 06:14 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,6 +31,13 @@ CREATE TABLE `archivos` (
   `id` int(11) NOT NULL,
   `archivo_cedulas` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `archivos`
+--
+
+INSERT INTO `archivos` (`id`, `archivo_cedulas`) VALUES
+(1, 'cedul.xlsx');
 
 -- --------------------------------------------------------
 
@@ -210,7 +217,8 @@ INSERT INTO `cedulas` (`id`, `cedula`, `nombre`, `activo`, `clave`) VALUES
 (157, '28948857', 'RODRIGUEZ MENDOZA EDNA MARGARITA', '1', ''),
 (158, '79959538', 'CORONADO MORENO FREDDY ANDREY', '0', ''),
 (159, '79108219', 'GUILOMBO CAÑON HERNAN', '1', ''),
-(160, '1100973339', 'JUAN SEBASTIAN SANDOVAL VARGAS', '1', '');
+(160, '1100973339', 'JUAN SEBASTIAN SANDOVAL VARGAS', '1', ''),
+(161, '123321', 'NOMBRE Y APELLIDO DE PRUEBA', '1', '');
 
 -- --------------------------------------------------------
 
@@ -256,6 +264,13 @@ CREATE TABLE `clasificados` (
   `clasificado_valla` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Dumping data for table `clasificados`
+--
+
+INSERT INTO `clasificados` (`clasificado_id`, `clasificado_octavos_a1`, `clasificado_octavos_a2`, `clasificado_octavos_b1`, `clasificado_octavos_b2`, `clasificado_octavos_c1`, `clasificado_octavos_c2`, `clasificado_octavos_d1`, `clasificado_octavos_d2`, `clasificado_octavos_e1`, `clasificado_octavos_e2`, `clasificado_octavos_f1`, `clasificado_octavos_f2`, `clasificado_octavos_g1`, `clasificado_octavos_g2`, `clasificado_octavos_h1`, `clasificado_octavos_h2`, `clasificado_cuartos_e1`, `clasificado_cuartos_e2`, `clasificado_cuartos_e3`, `clasificado_cuartos_e4`, `clasificado_cuartos_e5`, `clasificado_cuartos_e6`, `clasificado_cuartos_e7`, `clasificado_cuartos_e8`, `clasificado_semis_e1`, `clasificado_semis_e2`, `clasificado_semis_e3`, `clasificado_semis_e4`, `clasificado_cuarto`, `clasificado_tercero`, `clasificado_subcampeon`, `clasificado_campeon`, `clasificado_jugador`, `clasificado_valla`) VALUES
+(1, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '14', '1', '', '15', '', '', '', '', '', '', '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -266,6 +281,7 @@ CREATE TABLE `configuracion` (
   `config_id` int(11) NOT NULL,
   `config_valorcuota` varchar(255) DEFAULT NULL,
   `config_interes` varchar(255) DEFAULT NULL,
+  `config_horasminimo` varchar(2) DEFAULT NULL,
   `config_gruposmarcador` varchar(255) DEFAULT NULL,
   `config_gruposequipo` varchar(255) DEFAULT NULL,
   `config_gruposempate` varchar(255) DEFAULT NULL,
@@ -292,8 +308,8 @@ CREATE TABLE `configuracion` (
 -- Dumping data for table `configuracion`
 --
 
-INSERT INTO `configuracion` (`config_id`, `config_valorcuota`, `config_interes`, `config_gruposmarcador`, `config_gruposequipo`, `config_gruposempate`, `config_1puestooctavos`, `config_2puestooctavos`, `config_octavosmarcador`, `config_octavosequipo`, `config_cuartosclasificado`, `config_cuartosmarcador`, `config_cuartosganador`, `config_semisclasificado`, `config_semismarcador`, `config_semisequipo`, `config_finalesmarcadores`, `config_campeon`, `config_subcampeon`, `config_tercero`, `config_cuarto`, `config_goleador`, `config_valla`) VALUES
-(1, '50719', '1.14', '150', '20', '10', '100', '10', '200', '30', '150', '200', '30', '150', '250', '40', '300', '500', '250', '200', '50', '150', '150');
+INSERT INTO `configuracion` (`config_id`, `config_valorcuota`, `config_interes`, `config_horasminimo`, `config_gruposmarcador`, `config_gruposequipo`, `config_gruposempate`, `config_1puestooctavos`, `config_2puestooctavos`, `config_octavosmarcador`, `config_octavosequipo`, `config_cuartosclasificado`, `config_cuartosmarcador`, `config_cuartosganador`, `config_semisclasificado`, `config_semismarcador`, `config_semisequipo`, `config_finalesmarcadores`, `config_campeon`, `config_subcampeon`, `config_tercero`, `config_cuarto`, `config_goleador`, `config_valla`) VALUES
+(1, '50719', '1.14', '3', '150', '20', '10', '100', '10', '200', '30', '150', '200', '30', '150', '250', '40', '300', '500', '250', '200', '50', '150', '150');
 
 -- --------------------------------------------------------
 
@@ -366,6 +382,13 @@ CREATE TABLE `cuartos` (
   `fecha` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
+--
+-- Dumping data for table `cuartos`
+--
+
+INSERT INTO `cuartos` (`id`, `usuario`, `e1`, `e2`, `e3`, `e4`, `e5`, `e6`, `e7`, `e8`, `fecha`) VALUES
+(2, 1, '1', '14', '', '', '', '', '', '', '2024-05-20 12:49:21');
+
 -- --------------------------------------------------------
 
 --
@@ -408,10 +431,10 @@ CREATE TABLE `equipos` (
 --
 
 INSERT INTO `equipos` (`id`, `codigo`, `nombre`, `bandera`, `grupo`, `orden`, `pj`, `pg`, `pe`, `pp`, `gf`, `gc`, `gd`, `fp`, `puntos`) VALUES
-(1, 'ARG', 'ARGENTINA', 'obxjg3rq-nbwcl0de1.png', 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(2, 'PER', 'PER&Uacute;', 'um9j2zt0-6azroxfp1.png', 1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(3, 'CND', 'CANAD&Aacute;', 'bymi0wan-eqlgvn18.png', 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(4, 'CHL', 'CHILE', '6v3sirme-dyps3tqd.png', 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(1, 'ARG', 'ARGENTINA', 'obxjg3rq-nbwcl0de1.png', 1, 1, 1, 0, 1, 0, 2, 2, 0, 0, 1),
+(2, 'PER', 'PER&Uacute;', 'um9j2zt0-6azroxfp1.png', 1, 2, 1, 0, 1, 0, 2, 2, 0, 0, 1),
+(3, 'CND', 'CANAD&Aacute;', 'bymi0wan-eqlgvn18.png', 1, 3, 1, 0, 1, 0, 2, 2, 0, 0, 1),
+(4, 'CHL', 'CHILE', '6v3sirme-dyps3tqd.png', 1, 4, 1, 0, 1, 0, 2, 2, 0, 0, 1),
 (5, 'ECU', 'ECUADOR', 'nun1o8jc-ipf97vq3.png', 2, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (6, 'VNZ', 'VENEZUELA', '6esamvs0-jclzerll.png', 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (7, 'JMC', 'JAMAICA', 'jamaica.png', 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0),
@@ -449,8 +472,8 @@ CREATE TABLE `fases` (
 INSERT INTO `fases` (`id`, `titulo`, `fecha1`, `fecha2`, `enlace`, `nombreenlace`, `estado`, `orden`) VALUES
 (1, 'FASE 1', NULL, NULL, '', 'Fase 1', 1, 1),
 (2, 'Octavos de final', NULL, NULL, 'octavos', 'Octavos', 0, 2),
-(3, 'Cuartos de final', NULL, NULL, 'cuartos', 'Cuartos', 1, 3),
-(4, 'Semifinales', NULL, NULL, 'semifinal', 'Semis', 1, 4),
+(3, 'Cuartos de final', '2024-05-26 12:00:00', '2024-05-28 12:00:00', 'cuartos', 'Cuartos', 1, 3),
+(4, 'Semifinales', '2024-05-26 10:45:00', '2024-05-27 10:45:00', 'semifinal', 'Semis', 1, 4),
 (5, 'Final', NULL, NULL, 'final', 'Final', 1, 5),
 (6, 'otros', NULL, NULL, 'otros', 'Otros', 1, 6);
 
@@ -2280,7 +2303,136 @@ INSERT INTO `log` (`log_id`, `log_usuario`, `log_tipo`, `log_fecha`, `log_log`) 
 (957, '1100973339', 'EDITAR PARTIDO', '2024-05-15 23:45:36', 'Array\n(\n    [numero] => 1\n    [equipo1] => 1\n    [equipo2] => 3\n    [fecha] => 2024-06-20\n    [hora] => 19:00:00\n    [fase] => 1\n    [valor1] => 2\n    [valor2] => 1\n    [ganador] => 1\n    [id] => 1\n)\n'),
 (958, '1100973339', 'EDITAR PARTIDO', '2024-05-15 23:47:44', 'Array\n(\n    [numero] => 1\n    [equipo1] => 1\n    [equipo2] => 3\n    [fecha] => 2024-06-20\n    [hora] => 19:00:00\n    [fase] => 1\n    [valor1] => 2\n    [valor2] => 1\n    [ganador] => 1\n    [id] => 1\n)\n'),
 (959, '1100973339', 'EDITAR PARTIDO', '2024-05-15 23:47:45', 'Array\n(\n    [numero] => 1\n    [equipo1] => 1\n    [equipo2] => 3\n    [fecha] => 2024-06-20\n    [hora] => 19:00:00\n    [fase] => 1\n    [valor1] => 2\n    [valor2] => 1\n    [ganador] => 1\n    [id] => 1\n)\n'),
-(960, '1100973339', 'EDITAR PARTIDO', '2024-05-15 23:47:51', 'Array\n(\n    [numero] => 1\n    [equipo1] => 1\n    [equipo2] => 3\n    [fecha] => 2024-06-20\n    [hora] => 19:00:00\n    [fase] => 1\n    [valor1] => 2\n    [valor2] => 1\n    [ganador] => 1\n    [id] => 1\n)\n');
+(960, '1100973339', 'EDITAR PARTIDO', '2024-05-15 23:47:51', 'Array\n(\n    [numero] => 1\n    [equipo1] => 1\n    [equipo2] => 3\n    [fecha] => 2024-06-20\n    [hora] => 19:00:00\n    [fase] => 1\n    [valor1] => 2\n    [valor2] => 1\n    [ganador] => 1\n    [id] => 1\n)\n'),
+(961, 'admin', 'LOGIN', '2024-05-20 12:33:00', ''),
+(962, 'admin', 'EDITAR USUARIO', '2024-05-20 12:33:12', 'Array\n(\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => \n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => 1111\n    [user_delete] => 0\n    [user_current_user] => 0\n    [user_zona] => \n    [user_celular] => 3212312312\n    [user_puntos] => 20\n    [user_marcadores] => 0\n    [user_ganadores] => 1\n    [user_otros] => 0\n    [user_total] => 1\n    [user_cuotas] => 1\n    [user_paso] => 4\n    [user_fecha] => 2024-05-15\n    [user_id] => 1\n)\n'),
+(963, 'admin', 'LOGIN', '2024-05-20 12:34:40', ''),
+(964, '1100973339', '', '2024-05-20 12:35:01', ''),
+(965, '1100973339', '', '2024-05-20 12:35:01', ''),
+(966, '1100973339', '', '2024-05-20 12:35:01', ''),
+(967, '1100973339', '', '2024-05-20 12:35:01', ''),
+(968, '1100973339', '', '2024-05-20 12:35:01', ''),
+(969, '1100973339', '', '2024-05-20 12:35:01', ''),
+(970, '1100973339', '', '2024-05-20 12:35:01', ''),
+(971, '1100973339', '', '2024-05-20 12:35:01', ''),
+(972, '1100973339', '', '2024-05-20 12:35:01', ''),
+(973, '1100973339', '', '2024-05-20 12:35:01', ''),
+(974, '1100973339', '', '2024-05-20 12:35:01', ''),
+(975, '1100973339', '', '2024-05-20 12:35:01', ''),
+(976, '1100973339', '', '2024-05-20 12:35:01', ''),
+(977, '1100973339', '', '2024-05-20 12:35:01', ''),
+(978, '1100973339', '', '2024-05-20 12:35:01', ''),
+(979, '1100973339', '', '2024-05-20 12:35:01', ''),
+(980, '1100973339', '', '2024-05-20 12:35:01', ''),
+(981, '1100973339', '', '2024-05-20 12:35:01', ''),
+(982, '1100973339', '', '2024-05-20 12:35:01', ''),
+(983, '1100973339', '', '2024-05-20 12:35:01', ''),
+(984, '1100973339', '', '2024-05-20 12:35:01', ''),
+(985, '1100973339', '', '2024-05-20 12:35:01', ''),
+(986, '1100973339', '', '2024-05-20 12:35:01', ''),
+(987, '1100973339', '', '2024-05-20 12:35:01', ''),
+(988, 'admin', 'EDITAR PARTIDO', '2024-05-20 12:35:30', 'Array\n(\n    [numero] => 2\n    [equipo1] => 2\n    [equipo2] => 4\n    [fecha] => 2024-06-21\n    [hora] => 19:00:00\n    [fase] => 1\n    [valor1] => 2\n    [valor2] => 1\n    [ganador] => 2\n    [id] => 2\n)\n'),
+(989, 'admin', 'EDITAR PARTIDO', '2024-05-20 12:35:37', 'Array\n(\n    [id] => \n)\n'),
+(990, 'admin', 'EDITAR PARTIDO', '2024-05-20 12:36:03', 'Array\n(\n    [numero] => 2\n    [equipo1] => 2\n    [equipo2] => 4\n    [fecha] => 2024-06-21\n    [hora] => 19:00:00\n    [fase] => 1\n    [valor1] => 2\n    [valor2] => 1\n    [ganador] => 2\n    [id] => 2\n)\n'),
+(991, 'admin', 'EDITAR PARTIDO', '2024-05-20 12:37:59', 'Array\n(\n    [numero] => 2\n    [equipo1] => 2\n    [equipo2] => 4\n    [fecha] => 2024-06-21\n    [hora] => 19:00:00\n    [fase] => 1\n    [valor1] => 2\n    [valor2] => 3\n    [ganador] => 4\n    [id] => 2\n)\n'),
+(992, 'admin', 'EDITAR PARTIDO', '2024-05-20 12:38:50', 'Array\n(\n    [numero] => 2\n    [equipo1] => 2\n    [equipo2] => 4\n    [fecha] => 2024-06-21\n    [hora] => 19:00:00\n    [fase] => 1\n    [valor1] => 1\n    [valor2] => 2\n    [ganador] => 4\n    [id] => 2\n)\n'),
+(993, 'admin', 'EDITAR PARTIDO', '2024-05-20 12:39:37', 'Array\n(\n    [numero] => 2\n    [equipo1] => 2\n    [equipo2] => 4\n    [fecha] => 2024-06-21\n    [hora] => 19:00:00\n    [fase] => 1\n    [valor1] => 2\n    [valor2] => 2\n    [ganador] => -1\n    [id] => 2\n)\n'),
+(994, 'admin', 'EDITAR FASE', '2024-05-20 12:40:47', 'Array\n(\n    [estado] => 1\n    [titulo] => Cuartos de final\n    [fecha1] => 2024-05-19T12:00\n    [fecha2] => 2024-05-21T12:00\n    [id] => 3\n)\n'),
+(995, '1100973339', '', '2024-05-20 12:41:38', ''),
+(996, 'admin', 'CREAR CLASIFICADO', '2024-05-20 12:42:13', 'Array\n(\n    [clasificado_octavos_a1] => \n    [clasificado_octavos_a2] => \n    [clasificado_octavos_b1] => \n    [clasificado_octavos_b2] => \n    [clasificado_octavos_c1] => \n    [clasificado_octavos_c2] => \n    [clasificado_octavos_d1] => \n    [clasificado_octavos_d2] => \n    [clasificado_octavos_e1] => \n    [clasificado_octavos_e2] => \n    [clasificado_octavos_f1] => \n    [clasificado_octavos_f2] => \n    [clasificado_octavos_g1] => \n    [clasificado_octavos_g2] => \n    [clasificado_octavos_h1] => \n    [clasificado_octavos_h2] => \n    [clasificado_cuartos_e1] => \n    [clasificado_cuartos_e2] => \n    [clasificado_cuartos_e3] => \n    [clasificado_cuartos_e4] => \n    [clasificado_cuartos_e5] => \n    [clasificado_cuartos_e6] => \n    [clasificado_cuartos_e7] => \n    [clasificado_cuartos_e8] => \n    [clasificado_semis_e1] => 1\n    [clasificado_semis_e2] => \n    [clasificado_semis_e3] => \n    [clasificado_semis_e4] => \n    [clasificado_cuarto] => \n    [clasificado_tercero] => \n    [clasificado_subcampeon] => \n    [clasificado_campeon] => \n    [clasificado_jugador] => \n    [clasificado_valla] => \n    [clasificado_id] => 1\n)\n'),
+(997, 'admin', 'EDITAR CLASIFICADO', '2024-05-20 12:42:25', 'Array\n(\n    [clasificado_octavos_a1] => \n    [clasificado_octavos_a2] => \n    [clasificado_octavos_b1] => \n    [clasificado_octavos_b2] => \n    [clasificado_octavos_c1] => \n    [clasificado_octavos_c2] => \n    [clasificado_octavos_d1] => \n    [clasificado_octavos_d2] => \n    [clasificado_octavos_e1] => \n    [clasificado_octavos_e2] => \n    [clasificado_octavos_f1] => \n    [clasificado_octavos_f2] => \n    [clasificado_octavos_g1] => \n    [clasificado_octavos_g2] => \n    [clasificado_octavos_h1] => \n    [clasificado_octavos_h2] => \n    [clasificado_cuartos_e1] => \n    [clasificado_cuartos_e2] => \n    [clasificado_cuartos_e3] => \n    [clasificado_cuartos_e4] => \n    [clasificado_cuartos_e5] => \n    [clasificado_cuartos_e6] => \n    [clasificado_cuartos_e7] => 1\n    [clasificado_cuartos_e8] => \n    [clasificado_semis_e1] => \n    [clasificado_semis_e2] => \n    [clasificado_semis_e3] => \n    [clasificado_semis_e4] => \n    [clasificado_cuarto] => \n    [clasificado_tercero] => \n    [clasificado_subcampeon] => \n    [clasificado_campeon] => \n    [clasificado_jugador] => \n    [clasificado_valla] => \n    [clasificado_id] => 1\n)\n'),
+(998, 'admin', 'EDITAR CLASIFICADO', '2024-05-20 12:48:46', 'Array\n(\n    [clasificado_octavos_a1] => \n    [clasificado_octavos_a2] => \n    [clasificado_octavos_b1] => \n    [clasificado_octavos_b2] => \n    [clasificado_octavos_c1] => \n    [clasificado_octavos_c2] => \n    [clasificado_octavos_d1] => \n    [clasificado_octavos_d2] => \n    [clasificado_octavos_e1] => \n    [clasificado_octavos_e2] => \n    [clasificado_octavos_f1] => \n    [clasificado_octavos_f2] => \n    [clasificado_octavos_g1] => \n    [clasificado_octavos_g2] => \n    [clasificado_octavos_h1] => \n    [clasificado_octavos_h2] => \n    [clasificado_cuartos_e1] => \n    [clasificado_cuartos_e2] => \n    [clasificado_cuartos_e3] => \n    [clasificado_cuartos_e4] => \n    [clasificado_cuartos_e5] => \n    [clasificado_cuartos_e6] => \n    [clasificado_cuartos_e7] => 1\n    [clasificado_cuartos_e8] => \n    [clasificado_semis_e1] => \n    [clasificado_semis_e2] => \n    [clasificado_semis_e3] => \n    [clasificado_semis_e4] => \n    [clasificado_cuarto] => \n    [clasificado_tercero] => \n    [clasificado_subcampeon] => \n    [clasificado_campeon] => \n    [clasificado_jugador] => \n    [clasificado_valla] => \n    [clasificado_id] => 1\n)\n'),
+(999, '1100973339', '', '2024-05-20 12:49:21', '');
+INSERT INTO `log` (`log_id`, `log_usuario`, `log_tipo`, `log_fecha`, `log_log`) VALUES
+(1000, 'admin', 'EDITAR CLASIFICADO', '2024-05-20 12:49:28', 'Array\n(\n    [clasificado_octavos_a1] => \n    [clasificado_octavos_a2] => \n    [clasificado_octavos_b1] => \n    [clasificado_octavos_b2] => \n    [clasificado_octavos_c1] => \n    [clasificado_octavos_c2] => \n    [clasificado_octavos_d1] => \n    [clasificado_octavos_d2] => \n    [clasificado_octavos_e1] => \n    [clasificado_octavos_e2] => \n    [clasificado_octavos_f1] => \n    [clasificado_octavos_f2] => \n    [clasificado_octavos_g1] => \n    [clasificado_octavos_g2] => \n    [clasificado_octavos_h1] => \n    [clasificado_octavos_h2] => \n    [clasificado_cuartos_e1] => \n    [clasificado_cuartos_e2] => \n    [clasificado_cuartos_e3] => \n    [clasificado_cuartos_e4] => \n    [clasificado_cuartos_e5] => \n    [clasificado_cuartos_e6] => 14\n    [clasificado_cuartos_e7] => 1\n    [clasificado_cuartos_e8] => \n    [clasificado_semis_e1] => \n    [clasificado_semis_e2] => \n    [clasificado_semis_e3] => \n    [clasificado_semis_e4] => \n    [clasificado_cuarto] => \n    [clasificado_tercero] => \n    [clasificado_subcampeon] => \n    [clasificado_campeon] => \n    [clasificado_jugador] => \n    [clasificado_valla] => \n    [clasificado_id] => 1\n)\n'),
+(1001, 'admin', 'CREAR ARCHIVO', '2024-05-20 12:52:32', 'Array\n(\n    [archivo_cedulas] => cedulas1.xlsx\n    [id] => 1\n)\n'),
+(1002, 'admin', 'EDITAR ARCHIVO', '2024-05-20 12:54:08', 'Array\n(\n    [archivo_cedulas] => cedulas1.xlsx\n    [id] => 1\n)\n'),
+(1003, 'admin', 'EDITAR ARCHIVO', '2024-05-20 12:55:19', 'Array\n(\n    [archivo_cedulas] => cedul.xlsx\n    [id] => 1\n)\n'),
+(1004, 'admin', 'LOGIN', '2024-05-20 12:57:22', ''),
+(1005, 'admin', 'EDITAR ARCHIVO', '2024-05-20 12:57:40', 'Array\n(\n    [archivo_cedulas] => cedul.xlsx\n    [id] => 1\n)\n'),
+(1006, 'admin', 'EDITAR ARCHIVO', '2024-05-20 14:15:41', 'Array\n(\n    [archivo_cedulas] => cedul.xlsx\n    [id] => 1\n)\n'),
+(1007, 'admin', 'EDITAR ARCHIVO', '2024-05-20 14:16:13', 'Array\n(\n    [archivo_cedulas] => cedul.xlsx\n    [id] => 1\n)\n'),
+(1008, 'admin', 'LOGIN', '2024-05-27 10:19:21', ''),
+(1009, '1100973339', 'EDITAR FASE', '2024-05-27 10:30:50', 'Array\n(\n    [estado] => 1\n    [titulo] => Cuartos de final\n    [fecha1] => 2024-05-26T12:00\n    [fecha2] => 2024-05-28T12:00\n    [id] => 3\n)\n'),
+(1010, '38284216', '', '2024-05-27 10:39:34', ''),
+(1011, '38284216', '', '2024-05-27 10:39:34', ''),
+(1012, '38284216', '', '2024-05-27 10:39:34', ''),
+(1013, '38284216', '', '2024-05-27 10:39:34', ''),
+(1014, '38284216', '', '2024-05-27 10:39:34', ''),
+(1015, '38284216', '', '2024-05-27 10:39:34', ''),
+(1016, '38284216', '', '2024-05-27 10:39:34', ''),
+(1017, '38284216', '', '2024-05-27 10:39:34', ''),
+(1018, '38284216', '', '2024-05-27 10:39:34', ''),
+(1019, '38284216', '', '2024-05-27 10:39:34', ''),
+(1020, '38284216', '', '2024-05-27 10:39:34', ''),
+(1021, '38284216', '', '2024-05-27 10:39:34', ''),
+(1022, '38284216', '', '2024-05-27 10:39:34', ''),
+(1023, '38284216', '', '2024-05-27 10:39:34', ''),
+(1024, '38284216', '', '2024-05-27 10:39:34', ''),
+(1025, '38284216', '', '2024-05-27 10:39:34', ''),
+(1026, '38284216', '', '2024-05-27 10:39:34', ''),
+(1027, '38284216', '', '2024-05-27 10:39:34', ''),
+(1028, '38284216', '', '2024-05-27 10:39:34', ''),
+(1029, '38284216', '', '2024-05-27 10:39:34', ''),
+(1030, '38284216', '', '2024-05-27 10:39:34', ''),
+(1031, '38284216', '', '2024-05-27 10:39:34', ''),
+(1032, '38284216', '', '2024-05-27 10:39:34', ''),
+(1033, '38284216', '', '2024-05-27 10:39:34', ''),
+(1034, '38284216', '', '2024-05-27 10:39:47', ''),
+(1035, '38284216', '', '2024-05-27 10:39:47', ''),
+(1036, '38284216', '', '2024-05-27 10:39:47', ''),
+(1037, '38284216', '', '2024-05-27 10:39:47', ''),
+(1038, '38284216', '', '2024-05-27 10:39:47', ''),
+(1039, '38284216', '', '2024-05-27 10:39:47', ''),
+(1040, '38284216', '', '2024-05-27 10:39:47', ''),
+(1041, '38284216', '', '2024-05-27 10:39:47', ''),
+(1042, '38284216', '', '2024-05-27 10:39:47', ''),
+(1043, '38284216', '', '2024-05-27 10:39:47', ''),
+(1044, '38284216', '', '2024-05-27 10:39:47', ''),
+(1045, '38284216', '', '2024-05-27 10:39:47', ''),
+(1046, '38284216', '', '2024-05-27 10:39:47', ''),
+(1047, '38284216', '', '2024-05-27 10:39:47', ''),
+(1048, '38284216', '', '2024-05-27 10:39:47', ''),
+(1049, '38284216', '', '2024-05-27 10:39:47', ''),
+(1050, '38284216', '', '2024-05-27 10:39:47', ''),
+(1051, '38284216', '', '2024-05-27 10:39:47', ''),
+(1052, '38284216', '', '2024-05-27 10:39:47', ''),
+(1053, '38284216', '', '2024-05-27 10:39:47', ''),
+(1054, '38284216', '', '2024-05-27 10:39:47', ''),
+(1055, '38284216', '', '2024-05-27 10:39:47', ''),
+(1056, '38284216', '', '2024-05-27 10:39:47', ''),
+(1057, '38284216', '', '2024-05-27 10:39:47', ''),
+(1058, '38284216', '', '2024-05-27 10:40:07', ''),
+(1059, '38284216', '', '2024-05-27 10:40:07', ''),
+(1060, '38284216', '', '2024-05-27 10:40:07', ''),
+(1061, '38284216', '', '2024-05-27 10:40:07', ''),
+(1062, '38284216', '', '2024-05-27 10:40:07', ''),
+(1063, '38284216', '', '2024-05-27 10:40:07', ''),
+(1064, '38284216', '', '2024-05-27 10:40:07', ''),
+(1065, '38284216', '', '2024-05-27 10:40:07', ''),
+(1066, '38284216', '', '2024-05-27 10:40:07', ''),
+(1067, '38284216', '', '2024-05-27 10:40:07', ''),
+(1068, '38284216', '', '2024-05-27 10:40:07', ''),
+(1069, '38284216', '', '2024-05-27 10:40:07', ''),
+(1070, '38284216', '', '2024-05-27 10:40:07', ''),
+(1071, '38284216', '', '2024-05-27 10:40:07', ''),
+(1072, '38284216', '', '2024-05-27 10:40:07', ''),
+(1073, '38284216', '', '2024-05-27 10:40:07', ''),
+(1074, '38284216', '', '2024-05-27 10:40:07', ''),
+(1075, '38284216', '', '2024-05-27 10:40:07', ''),
+(1076, '38284216', '', '2024-05-27 10:40:07', ''),
+(1077, '38284216', '', '2024-05-27 10:40:07', ''),
+(1078, '38284216', '', '2024-05-27 10:40:07', ''),
+(1079, '38284216', '', '2024-05-27 10:40:07', ''),
+(1080, '38284216', '', '2024-05-27 10:40:07', ''),
+(1081, '38284216', '', '2024-05-27 10:40:07', ''),
+(1082, '1100973339', 'EDITAR PARTIDO', '2024-05-27 10:42:08', 'Array\n(\n    [numero] => 1\n    [equipo1] => 1\n    [equipo2] => 3\n    [fecha] => 2024-06-20\n    [hora] => 19:00:00\n    [fase] => 1\n    [valor1] => 2\n    [valor2] => 2\n    [ganador] => -1\n    [id] => 1\n)\n'),
+(1083, '1100973339', 'EDITAR FASE', '2024-05-27 10:45:35', 'Array\n(\n    [estado] => 1\n    [titulo] => Semifinales\n    [fecha1] => 2024-05-26T10:45\n    [fecha2] => 2024-05-28T10:45\n    [id] => 4\n)\n'),
+(1084, '1100973339', '', '2024-05-27 10:46:02', ''),
+(1085, '1100973339', 'EDITAR FASE', '2024-05-27 10:46:20', 'Array\n(\n    [estado] => 1\n    [titulo] => Semifinales\n    [fecha1] => 2024-05-26T10:45\n    [fecha2] => 2024-05-27T10:45\n    [id] => 4\n)\n'),
+(1086, '1100973339', 'EDITAR CLASIFICADO', '2024-05-27 10:47:15', 'Array\n(\n    [clasificado_octavos_a1] => \n    [clasificado_octavos_a2] => \n    [clasificado_octavos_b1] => \n    [clasificado_octavos_b2] => \n    [clasificado_octavos_c1] => \n    [clasificado_octavos_c2] => \n    [clasificado_octavos_d1] => \n    [clasificado_octavos_d2] => \n    [clasificado_octavos_e1] => \n    [clasificado_octavos_e2] => \n    [clasificado_octavos_f1] => \n    [clasificado_octavos_f2] => \n    [clasificado_octavos_g1] => \n    [clasificado_octavos_g2] => \n    [clasificado_octavos_h1] => \n    [clasificado_octavos_h2] => \n    [clasificado_cuartos_e1] => \n    [clasificado_cuartos_e2] => \n    [clasificado_cuartos_e3] => \n    [clasificado_cuartos_e4] => \n    [clasificado_cuartos_e5] => \n    [clasificado_cuartos_e6] => 14\n    [clasificado_cuartos_e7] => 1\n    [clasificado_cuartos_e8] => \n    [clasificado_semis_e1] => 15\n    [clasificado_semis_e2] => \n    [clasificado_semis_e3] => \n    [clasificado_semis_e4] => \n    [clasificado_cuarto] => \n    [clasificado_tercero] => \n    [clasificado_subcampeon] => \n    [clasificado_campeon] => \n    [clasificado_jugador] => \n    [clasificado_valla] => \n    [clasificado_id] => 1\n)\n'),
+(1087, '1100973339', 'EDITAR CONFIG', '2024-05-27 11:01:50', 'Array\n(\n    [config_id] => \n)\n'),
+(1088, '1100973339', 'EDITAR CONFIG', '2024-05-27 11:04:49', 'Array\n(\n    [config_valorcuota] => 50719\n    [config_interes] => 1.14\n    [config_horasminimo] => 3\n    [config_gruposmarcador] => 150\n    [config_gruposequipo] => 20\n    [config_gruposempate] => 10\n    [config_1puestooctavos] => 100\n    [config_2puestooctavos] => 10\n    [config_octavosmarcador] => 200\n    [config_octavosequipo] => 30\n    [config_cuartosclasificado] => 150\n    [config_cuartosmarcador] => 200\n    [config_cuartosganador] => 30\n    [config_semisclasificado] => 150\n    [config_semismarcador] => 250\n    [config_semisequipo] => 40\n    [config_finalesmarcadores] => 300\n    [config_campeon] => 500\n    [config_subcampeon] => 250\n    [config_tercero] => 200\n    [config_cuarto] => 50\n    [config_goleador] => 150\n    [config_valla] => 150\n    [config_id] => 1\n)\n');
 
 -- --------------------------------------------------------
 
@@ -2348,8 +2500,8 @@ CREATE TABLE `partidos` (
 --
 
 INSERT INTO `partidos` (`id`, `numero`, `equipo1`, `equipo2`, `fecha`, `hora`, `fase`, `valor1`, `valor2`, `ganador`) VALUES
-(1, 1, 1, 3, '2024-06-20', '19:00:00', '1', '2', '1', '1'),
-(2, 2, 2, 4, '2024-06-21', '19:00:00', '1', '', '', ''),
+(1, 1, 1, 3, '2024-06-20', '19:00:00', '1', '2', '2', '-1'),
+(2, 2, 2, 4, '2024-06-21', '19:00:00', '1', '2', '2', '-1'),
 (3, 3, 5, 6, '2024-06-22', '17:00:00', '1', '', '', ''),
 (4, 4, 8, 7, '2024-06-22', '20:00:00', '1', '', '', ''),
 (5, 5, 11, 9, '2024-06-23', '17:00:00', '1', '', '', ''),
@@ -2426,7 +2578,9 @@ CREATE TABLE `resultados` (
 --
 
 INSERT INTO `resultados` (`id`, `usuario`, `partido`, `valor1`, `valor2`, `ganador`, `fecha`) VALUES
-(1, 1, '1', '1', '0', '1', '2024-05-15 23:20:26');
+(2, 1, '1', '1', '0', '1', '2024-05-20 12:35:01'),
+(3, 1, '2', '1', '2', '4', '2024-05-20 12:35:01'),
+(6, 2, '1', '1', '2', '3', '2024-05-27 10:40:07');
 
 -- --------------------------------------------------------
 
@@ -2443,6 +2597,13 @@ CREATE TABLE `semis` (
   `e4` varchar(255) DEFAULT NULL,
   `fecha` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Dumping data for table `semis`
+--
+
+INSERT INTO `semis` (`id`, `usuario`, `e1`, `e2`, `e3`, `e4`, `fecha`) VALUES
+(1, '1', '15', '3', '11', '16', '2024-05-27 10:46:02');
 
 -- --------------------------------------------------------
 
@@ -2513,7 +2674,8 @@ CREATE TABLE `userpolla` (
 --
 
 INSERT INTO `userpolla` (`user_id`, `user_names`, `user_lastnames`, `user_email`, `user_idnumber`, `user_city`, `user_country`, `user_phone`, `user_address`, `user_level`, `user_state`, `user_user`, `user_password`, `user_delete`, `user_current_user`, `user_zona`, `user_celular`, `user_puntos`, `user_marcadores`, `user_ganadores`, `user_otros`, `user_total`, `user_cuotas`, `user_paso`, `user_fecha`) VALUES
-(1, 'JUAN SEBASTIAN SANDOVAL VARGAS', '', 'desarrollo8@omegawebsystems.com', '1100973339', '', '', '', '', 2, '1', '1100973339', '1111', '', '', '', '3212312312', '20', '0', '1', '0', '1', '1', '4', '2024-05-15');
+(1, 'JUAN SEBASTIAN SANDOVAL VARGAS', '', 'desarrollo8@omegawebsystems.com', '1100973339', '', '', '', '', 2, '1', '1100973339', '$2y$10$865VQ6xxU21Roj1fkv/kA.HIIfViI5Bf56hAXM2xehpy7MnxG7VFm', '0', '0', '', '3212312312', '470', '0', '2', '3', '5', '1', '4', '2024-05-15'),
+(2, 'GUZMAN ARGUELLO ESPERANZA', '', 'prueba@prueba.com', '38284216', '', '', '', '', 2, '1', '38284216', '1234', '', '', '', '31224345', '10', '0', '1', '0', '1', '1', '4', '2024-05-27');
 
 --
 -- Indexes for dumped tables
@@ -2665,19 +2827,19 @@ ALTER TABLE `userpolla`
 -- AUTO_INCREMENT for table `archivos`
 --
 ALTER TABLE `archivos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `cedulas`
 --
 ALTER TABLE `cedulas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=161;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
 
 --
 -- AUTO_INCREMENT for table `clasificados`
 --
 ALTER TABLE `clasificados`
-  MODIFY `clasificado_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `clasificado_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `configuracion`
@@ -2695,7 +2857,7 @@ ALTER TABLE `contenido`
 -- AUTO_INCREMENT for table `cuartos`
 --
 ALTER TABLE `cuartos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `enlaces`
@@ -2743,7 +2905,7 @@ ALTER TABLE `jugadores`
 -- AUTO_INCREMENT for table `log`
 --
 ALTER TABLE `log`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=961;
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1089;
 
 --
 -- AUTO_INCREMENT for table `octavos`
@@ -2773,13 +2935,13 @@ ALTER TABLE `publicidad`
 -- AUTO_INCREMENT for table `resultados`
 --
 ALTER TABLE `resultados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `semis`
 --
 ALTER TABLE `semis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -2791,7 +2953,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `userpolla`
 --
 ALTER TABLE `userpolla`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

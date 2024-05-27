@@ -202,7 +202,7 @@ class Administracion_archivoController extends Administracion_mainController
 
 	public function cargaAction()
 	{
-		error_reporting(E_ALL);
+		// error_reporting(E_ALL);
 
 		$id = 1;
 		$content = $this->mainModel->getById($id);
