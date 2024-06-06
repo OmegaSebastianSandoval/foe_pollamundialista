@@ -71,6 +71,11 @@
 	.tabla3 tr:nth-child(even) {
 		background: var(--white);
 	}
+
+	.input_field {
+
+		text-align: center;
+	}
 </style>
 <?php
 //$grupos = array("", "A", "B", "C", "D", "E", "F", "G", "H");
@@ -149,7 +154,7 @@
 
 		</div>
 
-		<form method="post" action="/page/jugar/guardar">
+		<form method="post" action="/page/jugar/resumen">
 			<?php foreach ($this->fases as $fase) : ?>
 				<?php
 				$i = $fase->id;
@@ -227,14 +232,14 @@
 												<?php if ($diferencia >= $this->horasminimo && $fechas[$partido->fecha] >= 1) { ?>
 													text-md-center d-flex w-100 justify-content-between align-items-center flex-md-row flex-column 
 												
-												<?php }?>
+												<?php } ?>
 													
 												" width="20%" style="min-height: 68px;">
 
 													<?php if ($diferencia >= $this->horasminimo && $fechas[$partido->fecha] >= 1) { ?>
-														<input name="valor1_<?php echo $partido->id; ?>" min="0" max="15"  type="number" id="valor1_<?php echo $partido->id; ?>" size="2" value="<?php echo $partido->resultado_valor1; ?>" class="marcador input_field w-100 w-md-50 w-lg-25" />
+														<input name="valor1_<?php echo $partido->id; ?>" min="0" max="15" type="number" id="valor1_<?php echo $partido->id; ?>" size="2" value="<?php echo $partido->resultado_valor1; ?>" class="marcador input_field w-100 w-md-50 w-lg-25" />
 														-
-														<input name="valor2_<?php echo $partido->id; ?>" min="0" max="15"  type="number" id="valor2_<?php echo $partido->id; ?>" size="2" value="<?php echo $partido->resultado_valor2; ?>" class="marcador input_field  w-100 w-md-50 w-lg-25" />
+														<input name="valor2_<?php echo $partido->id; ?>" min="0" max="15" type="number" id="valor2_<?php echo $partido->id; ?>" size="2" value="<?php echo $partido->resultado_valor2; ?>" class="marcador input_field  w-100 w-md-50 w-lg-25" />
 														<input type="hidden" name="partidos_enviados[]" value="<?php echo $partido->id; ?>">
 
 													<?php } else { ?>

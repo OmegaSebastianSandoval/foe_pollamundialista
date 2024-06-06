@@ -151,7 +151,7 @@ class Page_jugarController extends Page_mainController
 
 		$partidosEnviados = $_POST['partidos_enviados'] ?? [];
 
-		print_r($partidosEnviados);
+		// print_r($partidosEnviados);
 		foreach ($partidosEnviados as $partidoId) {
 			$valor1 = $this->_getSanitizedParam("valor1_" . $partidoId);
 			$valor2 = $this->_getSanitizedParam("valor2_" . $partidoId);
@@ -169,9 +169,9 @@ class Page_jugarController extends Page_mainController
 			}
 		}
 		$this->_view->resultados = $resultados;
-		echo '<pre>';
-		print_r($resultados);
-		echo '</pre>';
+		// echo '<pre>';
+		// print_r($resultados);
+		// echo '</pre>';
 	}
 	public function guardarAction()
 	{
