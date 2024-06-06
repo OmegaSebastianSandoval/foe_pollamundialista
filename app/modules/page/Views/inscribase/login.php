@@ -1,7 +1,6 @@
+<div class="container d-flex justify-content-start flex-column align-items-center gap-5 pb-4">
 
-
-<div class="container d-flex justify-content-center">
-
+	<h1 class="titulo">Ingreso del asociado</h1>
 
 
 	<div class="popup">
@@ -30,7 +29,7 @@
 			<input placeholder="Ingrese su documento" title="Ingrese su documento" name="cedula" type="number" value="<?php echo $_GET['cedula']; ?>" class="input_field" required>
 
 			<input placeholder="Ingrese su clave" title="Ingrese su documento" name="clave" type="password" class="input_field" required>
-
+			<a class="link" href="/page/inscribase/olvido">¿Olvidó su contraseña?</a>
 
 			<?php if ($_GET['error'] == "1") { ?>
 				<div class="alert alert-danger w-100 text-center" role="alert">
@@ -54,7 +53,7 @@
 	.contenedor-general {
 		/* display: grid;
 		place-items: center; */
-		justify-content: center
+		/* justify-content: center */
 	}
 
 	@media (max-width:771px) {
@@ -63,5 +62,4 @@
 
 		}
 	}
-	
 </style>

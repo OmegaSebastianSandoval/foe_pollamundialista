@@ -60,4 +60,38 @@ class Core_Model_Sendingemail
       return 2;
     }
   }
+  public function sendMailRecuperar($usuario, $clave, $correo)
+  {
+    $this->_view->usuario = $usuario;
+    $this->_view->clave = $clave;
+
+    $this->email->getMail()->addAddress($correo, "Recuperar contraseña FOE Pollamundialista");
+
+
+    $content = $this->_view->getRoutPHP('/../app/modules/core/Views/templatesemail/recuperar.php');
+    $this->email->getMail()->Subject = 'Recuperar contraseña FOE Pollamundialista';
+    $this->email->getMail()->msgHTML($content);
+    $this->email->getMail()->AltBody = $content;
+    // $this->email->getMail()->addBCC($informacion->info_pagina_correo_oculto);
+    if ($this->email->sed() == true) {
+      return 1;
+    } else {
+      return 2;
+    }
+  }
+  public function sendMailIngreso($correo)
+  {
+
+    $this->email->getMail()->addAddress($correo, "Registro exitoso FOE Pollamundialista");
+    $content = $this->_view->getRoutPHP('/../app/modules/core/Views/templatesemail/registro.php');
+    $this->email->getMail()->Subject = 'Registro exitoso FOE Pollamundialista';
+    $this->email->getMail()->msgHTML($content);
+    $this->email->getMail()->AltBody = $content;
+    // $this->email->getMail()->addBCC($informacion->info_pagina_correo_oculto);
+    if ($this->email->sed() == true) {
+      return 1;
+    } else {
+      return 2;
+    }
+  }
 }

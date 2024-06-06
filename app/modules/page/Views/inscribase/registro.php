@@ -1,6 +1,6 @@
-<div class="container d-flex justify-content-center">
+<div class="container d-flex justify-content-start flex-column align-items-center gap-3 pb-5">
 
-
+	<h1 class="titulo">Registro de usuario</h1>
 
 	<div class="popup">
 
@@ -33,10 +33,12 @@
 						<input placeholder="Ingrese su documento" title="Ingrese su documento" name="cedula" id="cedula" type="number" class="input_field" value="<?php echo $_GET['cedula'] ?>" readonly required>
 					</label>
 				</div>
+				<div class="col-sm-12 col-md-6">
+					<label>Ciudad del documento
+						<input placeholder="Ingrese la ciudad del documento" title="Ingrese la ciudad del documento" name="ciudad" id="ciudad" type="text" class="input_field"  required>
+					</label>
+				</div>
 
-
-				<div class="col-sm-12 col-md-6 d-none ">Ciudad del documento</div>
-				<div class="col-sm-12 col-md-6 d-none "><input type="text" name="ciudad" class="form-control"></div>
 
 				<div class="col-sm-12 col-md-6">
 					<label>Nombre
@@ -44,7 +46,11 @@
 					</label>
 				</div>
 
-
+				<div class="col-sm-12 col-md-6">
+					<label>Correo
+						<input placeholder="Ingrese su correo" title="Ingrese su correo" name="correo" id="correo" type="email" class="input_field" required>
+					</label>
+				</div>
 				<div class="col-sm-12 col-md-6">
 					<label>Clave (Númerico de 4 caracteres)
 						<input placeholder="Ingrese su clave" title="Ingrese su clave" name="clave" id="clave" type="password" class="input_field" onkeypress='validate(event)' onkeyup="validatePasswords()" required>
@@ -56,17 +62,54 @@
 					</label>
 				</div>
 
-				<div class="col-sm-12 col-md-6">
-					<label>Correo
-						<input placeholder="Ingrese su correo" title="Ingrese su correo" name="correo" id="correo" type="email" class="input_field" required>
-					</label>
-				</div>
+				
 
 				<div class="col-sm-12 col-md-6">
 					<label>Celular
 						<input placeholder="Ingrese su celular" title="Ingrese su celular" name="celular" id="celular" type="number" class="input_field" required>
 					</label>
 				</div>
+
+
+				<div class="col-sm-12 col-md-6">
+					<label>Cuotas
+						<select id="cuotas" name="cuotas" class="form-control">
+							<option value="" selected disabled>--Seleccione el número de cuotas--</option>
+							<option value="1">1 Cuota de $<?= number_format($this->cuota, 0) ?></option>
+							<option value="2">2 Cuotas de $<?= number_format($this->dosCuotas, 0) ?></option>
+						</select>
+					</label>
+				</div>
+				<div class="col-sm-12 mt-3">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" value="" id="autorizaciondescuento" required>
+						<label class="form-check-label" for="autorizaciondescuento">
+							Autorización de descuento de nómina
+						</label>
+
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" value="" id="autorizacionhabeas" required>
+
+						<label class="form-check-label" for="autorizacionhabeas">
+							<a href="https://www.foebbva.com/page/proteccion" target="_blank">
+								Autorización de habeas data
+							</a>
+						</label>
+
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" value="" id="autorizacionreglamento" required>
+						<label class="form-check-label" for="autorizacionreglamento">
+							<a href="/page/terminos" target="_blank">
+								Autorización del reglamento de la polla COPA AMÉRICA
+							</a>
+
+						</label>
+					</div>
+				</div>
+
+
 				<div class="alert alert-danger w-100" id="alert" role="alert" style="display: none; ">
 					Las contraseñas no coinciden.
 				</div>
@@ -76,12 +119,7 @@
 				<div class="col-sm-12 col-md-6 d-none ">Dirección</div>
 				<div class="col-sm-12 col-md-6 d-none "><input type="text" name="direccion" class="form-control"></div>
 				<div class="col-sm-12 col-md-6 d-none ">Forma de pago</div>
-				<div class="col-sm-12 col-md-6 d-none">
-					<select id="cuotas" name="cuotas" class="form-control">
-						<option value="1" selected>1 Cuota de 50.719</option>
-						<option value="2">2 Cuotas de 25.541</option>
-					</select>
-				</div>
+				
 			</div>
 			<button class="button">Validar</button>
 		</form>
@@ -98,12 +136,6 @@
 
 
 <style>
-	.contenedor-general {
-		/* display: grid;
-		place-items: center; */
-		justify-content: center
-	}
-
 	@media (max-width:771px) {
 		.contenedor-general {
 			padding-top: 0;
@@ -119,6 +151,11 @@
 			display: block;
 			margin-bottom: 8px;
 		}
+	}
+
+	h1 {
+
+		margin-top: 10px !important;
 	}
 </style>
 

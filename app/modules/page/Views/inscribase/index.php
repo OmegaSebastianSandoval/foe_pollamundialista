@@ -1,6 +1,6 @@
-<div class="container d-flex justify-content-center">
+<div class="container d-flex justify-content-start flex-column align-items-center gap-5">
 
-
+<h1 class="titulo">Validar documento del asociado</h1>
 
 	<div class="popup">
 
@@ -27,7 +27,7 @@
 			</div>
 			<input placeholder="Ingrese su documento" title="Ingrese su documento" name="cedula" type="number" class="input_field" required>
 
-			<?php if ($_GET['error'] == "1") { ?>
+			<?php if ($this->error == "1") { ?>
 				<div class="alert alert-warning w-100" role="alert">
 				El documento no pertenece a un asociado
 				</div>
@@ -51,7 +51,7 @@
 	.contenedor-general {
 		/* display: grid;
 		place-items: center; */
-		justify-content: center
+		/* justify-content: s */
 	}
 
 	@media (max-width:771px) {

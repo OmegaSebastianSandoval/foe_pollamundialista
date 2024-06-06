@@ -713,6 +713,28 @@ footer p {
   transform: translate(2px, 2px);
 }
 
+h1.titulo {
+  color: var(--blueC);
+  font-weight: 600;
+  text-align: center;
+  font-optical-sizing: auto;
+  font-family: 'RFRufo BlackItalic';
+  font-size: clamp(45px, 4vw, 35px);
+  font-style: italic;
+  margin-top: 65px;
+}
+.form-check-label a{
+  color: var(--blueC);
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 300ms ease-in-out;
+}
+.form-check-label a:hover{
+  color: var(--verde);
+  
+ 
+}
+
 /* *************************************
 
  UTILS FIN 
@@ -991,6 +1013,20 @@ h3 {
   font-size: 17px;
 
   color: var(--grisO);
+}
+
+.link{
+  text-decoration: none;
+  color: var(--verde);
+  margin: auto;
+  font-weight: 600;
+  transition: all 300ms ease-in-out;
+}
+
+.link:hover{
+  color: var(--verdeO);
+  font-weight: 700;
+
 }
 
 

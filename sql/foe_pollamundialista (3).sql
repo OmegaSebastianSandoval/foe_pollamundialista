@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 27, 2024 at 06:14 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: 127.0.0.1:3306
+-- Generation Time: Jun 06, 2024 at 07:30 PM
+-- Server version: 8.3.0
+-- PHP Version: 8.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -27,10 +27,12 @@ SET time_zone = "+00:00";
 -- Table structure for table `archivos`
 --
 
-CREATE TABLE `archivos` (
-  `id` int(11) NOT NULL,
-  `archivo_cedulas` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+DROP TABLE IF EXISTS `archivos`;
+CREATE TABLE IF NOT EXISTS `archivos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `archivo_cedulas` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `archivos`
@@ -45,13 +47,16 @@ INSERT INTO `archivos` (`id`, `archivo_cedulas`) VALUES
 -- Table structure for table `cedulas`
 --
 
-CREATE TABLE `cedulas` (
-  `id` int(11) NOT NULL,
-  `cedula` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '0',
-  `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `activo` varchar(1) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '1',
-  `clave` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+DROP TABLE IF EXISTS `cedulas`;
+CREATE TABLE IF NOT EXISTS `cedulas` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `cedula` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '0',
+  `nombre` varchar(100) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  `activo` varchar(1) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT '1',
+  `clave` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `cedula` (`cedula`)
+) ENGINE=MyISAM AUTO_INCREMENT=162 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
 -- Dumping data for table `cedulas`
@@ -226,43 +231,45 @@ INSERT INTO `cedulas` (`id`, `cedula`, `nombre`, `activo`, `clave`) VALUES
 -- Table structure for table `clasificados`
 --
 
-CREATE TABLE `clasificados` (
-  `clasificado_id` int(11) NOT NULL,
-  `clasificado_octavos_a1` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_a2` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_b1` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_b2` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_c1` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_c2` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_d1` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_d2` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_e1` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_e2` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_f1` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_f2` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_g1` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_g2` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_h1` varchar(255) DEFAULT NULL,
-  `clasificado_octavos_h2` varchar(255) DEFAULT NULL,
-  `clasificado_cuartos_e1` varchar(255) DEFAULT NULL,
-  `clasificado_cuartos_e2` varchar(255) DEFAULT NULL,
-  `clasificado_cuartos_e3` varchar(255) DEFAULT NULL,
-  `clasificado_cuartos_e4` varchar(255) DEFAULT NULL,
-  `clasificado_cuartos_e5` varchar(255) DEFAULT NULL,
-  `clasificado_cuartos_e6` varchar(255) DEFAULT NULL,
-  `clasificado_cuartos_e7` varchar(255) DEFAULT NULL,
-  `clasificado_cuartos_e8` varchar(255) DEFAULT NULL,
-  `clasificado_semis_e1` varchar(255) DEFAULT NULL,
-  `clasificado_semis_e2` varchar(255) DEFAULT NULL,
-  `clasificado_semis_e3` varchar(255) DEFAULT NULL,
-  `clasificado_semis_e4` varchar(255) DEFAULT NULL,
-  `clasificado_cuarto` varchar(255) DEFAULT NULL,
-  `clasificado_tercero` varchar(255) DEFAULT NULL,
-  `clasificado_subcampeon` varchar(255) DEFAULT NULL,
-  `clasificado_campeon` varchar(255) DEFAULT NULL,
-  `clasificado_jugador` varchar(255) DEFAULT NULL,
-  `clasificado_valla` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+DROP TABLE IF EXISTS `clasificados`;
+CREATE TABLE IF NOT EXISTS `clasificados` (
+  `clasificado_id` int NOT NULL AUTO_INCREMENT,
+  `clasificado_octavos_a1` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_a2` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_b1` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_b2` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_c1` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_c2` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_d1` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_d2` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_e1` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_e2` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_f1` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_f2` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_g1` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_g2` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_h1` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_octavos_h2` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_cuartos_e1` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_cuartos_e2` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_cuartos_e3` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_cuartos_e4` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_cuartos_e5` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_cuartos_e6` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_cuartos_e7` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_cuartos_e8` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_semis_e1` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_semis_e2` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_semis_e3` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_semis_e4` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_cuarto` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_tercero` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_subcampeon` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_campeon` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_jugador` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `clasificado_valla` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`clasificado_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
 -- Dumping data for table `clasificados`
@@ -277,32 +284,34 @@ INSERT INTO `clasificados` (`clasificado_id`, `clasificado_octavos_a1`, `clasifi
 -- Table structure for table `configuracion`
 --
 
-CREATE TABLE `configuracion` (
-  `config_id` int(11) NOT NULL,
-  `config_valorcuota` varchar(255) DEFAULT NULL,
-  `config_interes` varchar(255) DEFAULT NULL,
-  `config_horasminimo` varchar(2) DEFAULT NULL,
-  `config_gruposmarcador` varchar(255) DEFAULT NULL,
-  `config_gruposequipo` varchar(255) DEFAULT NULL,
-  `config_gruposempate` varchar(255) DEFAULT NULL,
-  `config_1puestooctavos` varchar(255) DEFAULT NULL,
-  `config_2puestooctavos` varchar(255) DEFAULT NULL,
-  `config_octavosmarcador` varchar(255) DEFAULT NULL,
-  `config_octavosequipo` varchar(255) DEFAULT NULL,
-  `config_cuartosclasificado` varchar(255) DEFAULT NULL,
-  `config_cuartosmarcador` varchar(255) DEFAULT NULL,
-  `config_cuartosganador` varchar(255) DEFAULT NULL,
-  `config_semisclasificado` varchar(255) DEFAULT NULL,
-  `config_semismarcador` varchar(255) DEFAULT NULL,
-  `config_semisequipo` varchar(255) DEFAULT NULL,
-  `config_finalesmarcadores` varchar(255) DEFAULT NULL,
-  `config_campeon` varchar(255) DEFAULT NULL,
-  `config_subcampeon` varchar(255) DEFAULT NULL,
-  `config_tercero` varchar(255) DEFAULT NULL,
-  `config_cuarto` varchar(255) DEFAULT NULL,
-  `config_goleador` varchar(255) DEFAULT NULL,
-  `config_valla` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+DROP TABLE IF EXISTS `configuracion`;
+CREATE TABLE IF NOT EXISTS `configuracion` (
+  `config_id` int NOT NULL AUTO_INCREMENT,
+  `config_valorcuota` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_interes` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_horasminimo` varchar(2) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_gruposmarcador` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_gruposequipo` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_gruposempate` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_1puestooctavos` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_2puestooctavos` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_octavosmarcador` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_octavosequipo` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_cuartosclasificado` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_cuartosmarcador` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_cuartosganador` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_semisclasificado` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_semismarcador` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_semisequipo` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_finalesmarcadores` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_campeon` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_subcampeon` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_tercero` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_cuarto` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_goleador` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `config_valla` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`config_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
 -- Dumping data for table `configuracion`
@@ -317,32 +326,34 @@ INSERT INTO `configuracion` (`config_id`, `config_valorcuota`, `config_interes`,
 -- Table structure for table `contenido`
 --
 
-CREATE TABLE `contenido` (
-  `contenido_id` int(11) NOT NULL,
-  `contenido_seccion` int(11) DEFAULT NULL,
-  `contenido_tipo` int(11) DEFAULT NULL,
-  `contenido_padre` int(11) DEFAULT NULL,
-  `contenido_columna_alineacion` int(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `contenido`;
+CREATE TABLE IF NOT EXISTS `contenido` (
+  `contenido_id` int NOT NULL AUTO_INCREMENT,
+  `contenido_seccion` int DEFAULT NULL,
+  `contenido_tipo` int DEFAULT NULL,
+  `contenido_padre` int DEFAULT NULL,
+  `contenido_columna_alineacion` int DEFAULT NULL,
   `contenido_columna` varchar(255) DEFAULT NULL,
-  `contenido_columna_espacios` int(11) DEFAULT NULL,
-  `contenido_disenio` int(11) DEFAULT NULL,
-  `contenido_borde` int(11) DEFAULT NULL,
-  `contenido_estado` int(11) DEFAULT NULL,
+  `contenido_columna_espacios` int DEFAULT NULL,
+  `contenido_disenio` int DEFAULT NULL,
+  `contenido_borde` int DEFAULT NULL,
+  `contenido_estado` int DEFAULT NULL,
   `contenido_fecha` date DEFAULT NULL,
   `contenido_titulo` varchar(500) DEFAULT NULL,
-  `contenido_titulo_ver` int(11) DEFAULT NULL,
+  `contenido_titulo_ver` int DEFAULT NULL,
   `contenido_imagen` varchar(500) DEFAULT NULL,
   `contenido_archivo` varchar(255) DEFAULT NULL,
   `contenido_fondo_imagen` varchar(50) DEFAULT NULL,
-  `contenido_fondo_imagen_tipo` int(11) DEFAULT NULL,
+  `contenido_fondo_imagen_tipo` int DEFAULT NULL,
   `contenido_fondo_color` varchar(100) DEFAULT NULL,
-  `contenido_introduccion` text DEFAULT NULL,
-  `contenido_descripcion` text DEFAULT NULL,
+  `contenido_introduccion` text,
+  `contenido_descripcion` text,
   `contenido_enlace` varchar(500) DEFAULT NULL,
-  `contenido_enlace_abrir` int(11) DEFAULT NULL,
+  `contenido_enlace_abrir` int DEFAULT NULL,
   `contenido_vermas` varchar(100) DEFAULT NULL,
-  `orden` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `orden` int DEFAULT NULL,
+  PRIMARY KEY (`contenido_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `contenido`
@@ -368,9 +379,10 @@ INSERT INTO `contenido` (`contenido_id`, `contenido_seccion`, `contenido_tipo`, 
 -- Table structure for table `cuartos`
 --
 
-CREATE TABLE `cuartos` (
-  `id` int(11) NOT NULL,
-  `usuario` int(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `cuartos`;
+CREATE TABLE IF NOT EXISTS `cuartos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario` int DEFAULT NULL,
   `e1` varchar(11) DEFAULT NULL,
   `e2` varchar(11) DEFAULT NULL,
   `e3` varchar(11) DEFAULT NULL,
@@ -379,8 +391,9 @@ CREATE TABLE `cuartos` (
   `e6` varchar(11) DEFAULT NULL,
   `e7` varchar(11) DEFAULT NULL,
   `e8` varchar(11) DEFAULT NULL,
-  `fecha` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `fecha` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `cuartos`
@@ -395,12 +408,14 @@ INSERT INTO `cuartos` (`id`, `usuario`, `e1`, `e2`, `e3`, `e4`, `e5`, `e6`, `e7`
 -- Table structure for table `enlaces`
 --
 
-CREATE TABLE `enlaces` (
-  `enlaces_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `enlaces`;
+CREATE TABLE IF NOT EXISTS `enlaces` (
+  `enlaces_id` int NOT NULL AUTO_INCREMENT,
   `enlaces_titulo` varchar(255) DEFAULT NULL,
   `enlaces_link` varchar(255) DEFAULT NULL,
-  `orden` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+  `orden` int DEFAULT NULL,
+  PRIMARY KEY (`enlaces_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
 
@@ -408,23 +423,25 @@ CREATE TABLE `enlaces` (
 -- Table structure for table `equipos`
 --
 
-CREATE TABLE `equipos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `equipos`;
+CREATE TABLE IF NOT EXISTS `equipos` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `codigo` varchar(4) DEFAULT NULL,
   `nombre` varchar(100) DEFAULT NULL,
   `bandera` varchar(200) DEFAULT NULL,
-  `grupo` int(11) DEFAULT NULL,
-  `orden` int(11) DEFAULT NULL,
-  `pj` int(11) DEFAULT NULL,
-  `pg` int(11) DEFAULT NULL,
-  `pe` int(11) DEFAULT NULL,
-  `pp` int(11) DEFAULT NULL,
-  `gf` int(11) DEFAULT NULL,
-  `gc` int(11) DEFAULT NULL,
-  `gd` int(11) DEFAULT NULL,
-  `fp` int(11) DEFAULT NULL,
-  `puntos` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `grupo` int DEFAULT NULL,
+  `orden` int DEFAULT NULL,
+  `pj` int DEFAULT NULL,
+  `pg` int DEFAULT NULL,
+  `pe` int DEFAULT NULL,
+  `pp` int DEFAULT NULL,
+  `gf` int DEFAULT NULL,
+  `gc` int DEFAULT NULL,
+  `gd` int DEFAULT NULL,
+  `fp` int DEFAULT NULL,
+  `puntos` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `equipos`
@@ -454,16 +471,18 @@ INSERT INTO `equipos` (`id`, `codigo`, `nombre`, `bandera`, `grupo`, `orden`, `p
 -- Table structure for table `fases`
 --
 
-CREATE TABLE `fases` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `fases`;
+CREATE TABLE IF NOT EXISTS `fases` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `titulo` varchar(100) DEFAULT NULL,
   `fecha1` datetime DEFAULT NULL,
   `fecha2` datetime DEFAULT NULL,
   `enlace` varchar(255) DEFAULT NULL,
   `nombreenlace` varchar(255) DEFAULT NULL,
-  `estado` int(5) DEFAULT NULL,
-  `orden` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `estado` int DEFAULT NULL,
+  `orden` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `fases`
@@ -483,15 +502,17 @@ INSERT INTO `fases` (`id`, `titulo`, `fecha1`, `fecha2`, `enlace`, `nombreenlace
 -- Table structure for table `final`
 --
 
-CREATE TABLE `final` (
-  `id` int(11) NOT NULL,
-  `usuario` int(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `final`;
+CREATE TABLE IF NOT EXISTS `final` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario` int DEFAULT NULL,
   `campeon` varchar(11) DEFAULT NULL,
   `subcampeon` varchar(11) DEFAULT NULL,
   `tercero` varchar(11) DEFAULT NULL,
   `cuarto` varchar(11) DEFAULT NULL,
-  `fecha` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `fecha` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -499,11 +520,13 @@ CREATE TABLE `final` (
 -- Table structure for table `grupos`
 --
 
-CREATE TABLE `grupos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `grupos`;
+CREATE TABLE IF NOT EXISTS `grupos` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) DEFAULT NULL,
-  `orden` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `orden` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `grupos`
@@ -521,8 +544,9 @@ INSERT INTO `grupos` (`id`, `nombre`, `orden`) VALUES
 -- Table structure for table `info_pagina`
 --
 
-CREATE TABLE `info_pagina` (
-  `info_pagina_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `info_pagina`;
+CREATE TABLE IF NOT EXISTS `info_pagina` (
+  `info_pagina_id` bigint NOT NULL AUTO_INCREMENT,
   `info_pagina_facebook` varchar(255) DEFAULT NULL,
   `info_pagina_instagram` varchar(255) DEFAULT NULL,
   `info_pagina_twitter` varchar(255) DEFAULT NULL,
@@ -534,21 +558,21 @@ CREATE TABLE `info_pagina` (
   `info_pagina_telefono` varchar(255) DEFAULT NULL,
   `info_pagina_whatsapp` varchar(255) DEFAULT NULL,
   `info_pagina_correos_contacto` varchar(255) DEFAULT NULL,
-  `info_pagina_direccion_contacto` text DEFAULT NULL,
-  `info_pagina_informacion_contacto` text DEFAULT NULL,
-  `info_pagina_informacion_contacto_footer` text DEFAULT NULL,
+  `info_pagina_direccion_contacto` text,
+  `info_pagina_informacion_contacto` text,
+  `info_pagina_informacion_contacto_footer` text,
   `info_pagina_latitud` varchar(255) DEFAULT NULL,
   `info_pagina_longitud` varchar(255) DEFAULT NULL,
   `info_pagina_zoom` varchar(255) DEFAULT NULL,
-  `info_pagina_descripcion` text DEFAULT NULL,
-  `info_pagina_tags` text DEFAULT NULL,
+  `info_pagina_descripcion` text,
+  `info_pagina_tags` text,
   `info_pagina_robot` varchar(500) DEFAULT NULL,
   `info_pagina_sitemap` varchar(500) DEFAULT NULL,
-  `info_pagina_scripts` text DEFAULT NULL,
-  `info_pagina_metricas` text DEFAULT NULL,
-  `orden` bigint(20) DEFAULT NULL,
+  `info_pagina_scripts` text,
+  `info_pagina_metricas` text,
+  `orden` bigint DEFAULT NULL,
   `info_pagina_host` varchar(200) NOT NULL,
-  `info_pagina_port` int(11) NOT NULL,
+  `info_pagina_port` int NOT NULL,
   `info_pagina_username` varchar(200) NOT NULL,
   `info_pagina_password` varchar(200) NOT NULL,
   `info_pagina_correo_remitente` varchar(200) NOT NULL,
@@ -556,15 +580,16 @@ CREATE TABLE `info_pagina` (
   `info_pagina_correo_oculto` varchar(200) NOT NULL,
   `info_pagina_titulo_legal` varchar(200) NOT NULL,
   `info_pagina_descripcion_legal` longtext NOT NULL,
-  `info_pagina_favicon` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `info_pagina_favicon` varchar(500) NOT NULL,
+  PRIMARY KEY (`info_pagina_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `info_pagina`
 --
 
 INSERT INTO `info_pagina` (`info_pagina_id`, `info_pagina_facebook`, `info_pagina_instagram`, `info_pagina_twitter`, `info_pagina_pinterest`, `info_pagina_youtube`, `info_pagina_flickr`, `info_pagina_linkedin`, `info_pagina_google`, `info_pagina_telefono`, `info_pagina_whatsapp`, `info_pagina_correos_contacto`, `info_pagina_direccion_contacto`, `info_pagina_informacion_contacto`, `info_pagina_informacion_contacto_footer`, `info_pagina_latitud`, `info_pagina_longitud`, `info_pagina_zoom`, `info_pagina_descripcion`, `info_pagina_tags`, `info_pagina_robot`, `info_pagina_sitemap`, `info_pagina_scripts`, `info_pagina_metricas`, `orden`, `info_pagina_host`, `info_pagina_port`, `info_pagina_username`, `info_pagina_password`, `info_pagina_correo_remitente`, `info_pagina_nombre_remitente`, `info_pagina_correo_oculto`, `info_pagina_titulo_legal`, `info_pagina_descripcion_legal`, `info_pagina_favicon`) VALUES
-(1, 'https://www.facebook.com/FOEBBVACol/?locale=es_LA', '', 'https://twitter.com/foebbva', '', '', '', '', '', 'PBX: (57) (1) 327 53 00', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, '1', 1, '1', '1', '1', '1', '1', '', '', 'logoarbol2.png');
+(1, 'https://www.facebook.com/FOEBBVACol/?locale=es_LA', '', 'https://twitter.com/foebbva', '', '', '', '', '', 'PBX: (57) (1) 327 53 00', '', 'juansesdvsf@gmail.com,soporteomega@omegawebsystems.com', '', '', '', '', '', '', '', '', '', '', '', '', NULL, 'smtp.office365.com', 587, 'asambleafoe2024@foebbva.com', 'Xoz09525', 'asambleafoe2024@foebbva.com', 'Polla mundialista FOE', 'soporteomega@omegawebsystems.com', '', '', 'logoarbol2.png');
 
 -- --------------------------------------------------------
 
@@ -572,12 +597,15 @@ INSERT INTO `info_pagina` (`info_pagina_id`, `info_pagina_facebook`, `info_pagin
 -- Table structure for table `jugadores`
 --
 
-CREATE TABLE `jugadores` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `jugadores`;
+CREATE TABLE IF NOT EXISTS `jugadores` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(200) DEFAULT NULL,
-  `tipo` int(11) DEFAULT NULL,
-  `equipo` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `tipo` int DEFAULT NULL,
+  `equipo` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nombre` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=736 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jugadores`
@@ -1326,13 +1354,15 @@ INSERT INTO `jugadores` (`id`, `nombre`, `tipo`, `equipo`) VALUES
 -- Table structure for table `log`
 --
 
-CREATE TABLE `log` (
-  `log_id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `log`;
+CREATE TABLE IF NOT EXISTS `log` (
+  `log_id` int NOT NULL AUTO_INCREMENT,
   `log_usuario` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `log_tipo` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `log_fecha` datetime DEFAULT NULL,
-  `log_log` text CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `log_log` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+  PRIMARY KEY (`log_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1118 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
 -- Dumping data for table `log`
@@ -2432,7 +2462,36 @@ INSERT INTO `log` (`log_id`, `log_usuario`, `log_tipo`, `log_fecha`, `log_log`) 
 (1085, '1100973339', 'EDITAR FASE', '2024-05-27 10:46:20', 'Array\n(\n    [estado] => 1\n    [titulo] => Semifinales\n    [fecha1] => 2024-05-26T10:45\n    [fecha2] => 2024-05-27T10:45\n    [id] => 4\n)\n'),
 (1086, '1100973339', 'EDITAR CLASIFICADO', '2024-05-27 10:47:15', 'Array\n(\n    [clasificado_octavos_a1] => \n    [clasificado_octavos_a2] => \n    [clasificado_octavos_b1] => \n    [clasificado_octavos_b2] => \n    [clasificado_octavos_c1] => \n    [clasificado_octavos_c2] => \n    [clasificado_octavos_d1] => \n    [clasificado_octavos_d2] => \n    [clasificado_octavos_e1] => \n    [clasificado_octavos_e2] => \n    [clasificado_octavos_f1] => \n    [clasificado_octavos_f2] => \n    [clasificado_octavos_g1] => \n    [clasificado_octavos_g2] => \n    [clasificado_octavos_h1] => \n    [clasificado_octavos_h2] => \n    [clasificado_cuartos_e1] => \n    [clasificado_cuartos_e2] => \n    [clasificado_cuartos_e3] => \n    [clasificado_cuartos_e4] => \n    [clasificado_cuartos_e5] => \n    [clasificado_cuartos_e6] => 14\n    [clasificado_cuartos_e7] => 1\n    [clasificado_cuartos_e8] => \n    [clasificado_semis_e1] => 15\n    [clasificado_semis_e2] => \n    [clasificado_semis_e3] => \n    [clasificado_semis_e4] => \n    [clasificado_cuarto] => \n    [clasificado_tercero] => \n    [clasificado_subcampeon] => \n    [clasificado_campeon] => \n    [clasificado_jugador] => \n    [clasificado_valla] => \n    [clasificado_id] => 1\n)\n'),
 (1087, '1100973339', 'EDITAR CONFIG', '2024-05-27 11:01:50', 'Array\n(\n    [config_id] => \n)\n'),
-(1088, '1100973339', 'EDITAR CONFIG', '2024-05-27 11:04:49', 'Array\n(\n    [config_valorcuota] => 50719\n    [config_interes] => 1.14\n    [config_horasminimo] => 3\n    [config_gruposmarcador] => 150\n    [config_gruposequipo] => 20\n    [config_gruposempate] => 10\n    [config_1puestooctavos] => 100\n    [config_2puestooctavos] => 10\n    [config_octavosmarcador] => 200\n    [config_octavosequipo] => 30\n    [config_cuartosclasificado] => 150\n    [config_cuartosmarcador] => 200\n    [config_cuartosganador] => 30\n    [config_semisclasificado] => 150\n    [config_semismarcador] => 250\n    [config_semisequipo] => 40\n    [config_finalesmarcadores] => 300\n    [config_campeon] => 500\n    [config_subcampeon] => 250\n    [config_tercero] => 200\n    [config_cuarto] => 50\n    [config_goleador] => 150\n    [config_valla] => 150\n    [config_id] => 1\n)\n');
+(1088, '1100973339', 'EDITAR CONFIG', '2024-05-27 11:04:49', 'Array\n(\n    [config_valorcuota] => 50719\n    [config_interes] => 1.14\n    [config_horasminimo] => 3\n    [config_gruposmarcador] => 150\n    [config_gruposequipo] => 20\n    [config_gruposempate] => 10\n    [config_1puestooctavos] => 100\n    [config_2puestooctavos] => 10\n    [config_octavosmarcador] => 200\n    [config_octavosequipo] => 30\n    [config_cuartosclasificado] => 150\n    [config_cuartosmarcador] => 200\n    [config_cuartosganador] => 30\n    [config_semisclasificado] => 150\n    [config_semismarcador] => 250\n    [config_semisequipo] => 40\n    [config_finalesmarcadores] => 300\n    [config_campeon] => 500\n    [config_subcampeon] => 250\n    [config_tercero] => 200\n    [config_cuarto] => 50\n    [config_goleador] => 150\n    [config_valla] => 150\n    [config_id] => 1\n)\n'),
+(1089, '1100973339', 'CREAR PARTIDO', '2024-05-27 11:17:51', 'Array\n(\n    [numero] => 25\n    [equipo1] => 1\n    [equipo2] => 9\n    [fecha] => 2024-05-27\n    [hora] => 14:17\n    [fase] => 1\n    [valor1] => \n    [valor2] => \n    [ganador] => \n    [id] => 25\n)\n'),
+(1090, '1100973339', 'EDITAR PARTIDO', '2024-05-27 11:18:31', 'Array\n(\n    [numero] => 25\n    [equipo1] => 1\n    [equipo2] => 9\n    [fecha] => 2024-05-27\n    [hora] => 14:19\n    [fase] => 1\n    [valor1] => \n    [valor2] => \n    [ganador] => \n    [id] => 25\n)\n'),
+(1091, 'admin', 'LOGIN', '2024-05-30 12:52:11', ''),
+(1092, 'admin', 'LOGIN', '2024-06-04 09:35:42', ''),
+(1093, 'admin', 'LOGIN', '2024-06-04 09:52:50', ''),
+(1094, 'admin', 'LOGIN', '2024-06-04 10:03:49', ''),
+(1095, 'admin', 'BORRAR USUARIO', '2024-06-04 10:32:43', 'Array\n(\n    [user_id] => 1\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => \n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => $2y$10$K.DSdwBZaXuSAUAT.AVWp.YMBuFad0kSvbmotEuJQAvILb2GEBoSi\n    [user_delete] => 0\n    [user_current_user] => 0\n    [user_zona] => \n    [user_celular] => 3212312312\n    [user_puntos] => 470\n    [user_marcadores] => 0\n    [user_ganadores] => 2\n    [user_otros] => 3\n    [user_total] => 5\n    [user_cuotas] => 1\n    [user_paso] => 4\n    [user_fecha] => 2024-05-15\n)\n'),
+(1096, '1100973339', 'BORRAR USUARIO', '2024-06-04 10:54:04', 'Array\n(\n    [user_id] => 10\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => \n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => $2y$10$dhTWL9QOfPYE1ep0J6ak4eIO3/dI4/IqJXFSC/ofUVn0zo2XaFPE.\n    [user_delete] => \n    [user_current_user] => \n    [user_zona] => \n    [user_celular] => 3133192739\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 4\n    [user_fecha] => 2024-06-04\n)\n'),
+(1097, 'admin', 'LOGIN', '2024-06-06 09:22:31', ''),
+(1098, 'admin', 'BORRAR USUARIO', '2024-06-06 09:23:01', 'Array\n(\n    [user_id] => 25\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => \n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => $2y$10$wJDyyTpSsqVZ.6ictpIqlu1/CDUXn/ZsILz.py5.QmxM1iTXaa8wm\n    [user_delete] => \n    [user_current_user] => \n    [user_zona] => \n    [user_celular] => 3133192739\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 4\n    [user_fecha] => 2024-06-04\n)\n'),
+(1099, 'admin', 'LOGIN', '2024-06-06 09:38:57', ''),
+(1100, 'admin', 'LOGIN', '2024-06-06 10:23:12', ''),
+(1101, 'admin', 'BORRAR USUARIO', '2024-06-06 10:24:05', 'Array\n(\n    [user_id] => 27\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => \n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => $2y$10$i/iUOBc5GmPSLO1pcxT8NO7pY7vZO0HDElPxaQ7hNty4F3Y2jI4hm\n    [user_delete] => \n    [user_current_user] => \n    [user_zona] => \n    [user_celular] => 3133192739\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 0\n    [user_fecha] => 2024-06-06\n)\n'),
+(1102, 'admin', 'LOGIN', '2024-06-06 10:28:45', ''),
+(1103, 'admin', 'LOGIN', '2024-06-06 10:32:47', ''),
+(1104, 'admin', 'BORRAR USUARIO', '2024-06-06 10:32:57', 'Array\n(\n    [user_id] => 29\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => \n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => $2y$10$a2Tc0dH7wnbWlEJ21FsT9O6JEAO6EMcB51v1BYjq55ip12C1Y0pqW\n    [user_delete] => \n    [user_current_user] => \n    [user_zona] => \n    [user_celular] => 312312\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 0\n    [user_fecha] => 2024-06-06\n)\n'),
+(1105, 'admin', 'BORRAR USUARIO', '2024-06-06 10:33:00', 'Array\n(\n    [user_id] => 28\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => \n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => $2y$10$iCrnQO0heHUTfIfqPSY8zurij1tioBTGyG.Yk6.SNW1tBOo6AdyaK\n    [user_delete] => \n    [user_current_user] => \n    [user_zona] => \n    [user_celular] => 123213\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 0\n    [user_fecha] => 2024-06-06\n)\n'),
+(1106, 'admin', 'BORRAR USUARIO', '2024-06-06 10:47:17', 'Array\n(\n    [user_id] => 30\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => ciudad prueba\n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => $2y$10$2Vf5g.w1nh584QbjJ6KVS.mdszvKW3eYiQFUOyoV98HCstvpu5OPK\n    [user_delete] => \n    [user_current_user] => \n    [user_zona] => \n    [user_celular] => 3133192739\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 0\n    [user_fecha] => 2024-06-06 00:00:00\n)\n'),
+(1107, 'admin', 'BORRAR USUARIO', '2024-06-06 10:47:20', 'Array\n(\n    [user_id] => 31\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => ciudad prueba\n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => $2y$10$Dq0.cy1xGnLR8uCsSkX0U.vlvG7rcmlNSehOrvwYLh/kE/pGlVYMm\n    [user_delete] => \n    [user_current_user] => \n    [user_zona] => \n    [user_celular] => 3133192739\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 0\n    [user_fecha] => 2024-06-06 00:00:00\n)\n'),
+(1108, 'admin', 'BORRAR USUARIO', '2024-06-06 10:47:22', 'Array\n(\n    [user_id] => 32\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => ciudad prueba\n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => $2y$10$5tx7TwnFqUHGvLMTKHFrBeAV6XkNNYQcw.fZYOnd5ewGkPBXuFP7O\n    [user_delete] => \n    [user_current_user] => \n    [user_zona] => \n    [user_celular] => 3133192739\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 0\n    [user_fecha] => 2024-06-06 00:00:00\n)\n'),
+(1109, 'admin', 'BORRAR USUARIO', '2024-06-06 11:03:20', 'Array\n(\n    [user_id] => 39\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => ciudad prueba\n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => $2y$10$FdOD0idlnnQ9YLEicn.Tru9I1ZKVnOuYJzmlSQtVncNRZ75gLkFby\n    [user_delete] => \n    [user_current_user] => \n    [user_zona] => \n    [user_celular] => 3133192739\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 2\n    [user_paso] => 4\n    [user_fecha] => 2024-06-06 10:06:53\n)\n'),
+(1110, 'admin', 'BORRAR USUARIO', '2024-06-06 11:06:10', 'Array\n(\n    [user_id] => 40\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => ciudad prueba\n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => $2y$10$JIvZckOobXTcV7XkA/KQIuaZhcWw3kD6Iu.qFzhE/Y9gjefosQaYG\n    [user_delete] => \n    [user_current_user] => \n    [user_zona] => \n    [user_celular] => 3133192739\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 4\n    [user_fecha] => 2024-06-06 11:06:41\n)\n'),
+(1111, 'admin', 'BORRAR USUARIO', '2024-06-06 11:24:49', 'Array\n(\n    [user_id] => 43\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => ciudad prueba\n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => $2y$10$Z3o1f5MfwLZ0zKvolotxU.OEyADYTUiN/MInnDDt7/FTi6VuF/Ap2\n    [user_delete] => \n    [user_current_user] => \n    [user_zona] => \n    [user_celular] => 3133192739\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 4\n    [user_fecha] => 2024-06-06 11:06:48\n)\n'),
+(1112, 'admin', 'EDITAR PARTIDO', '2024-06-06 11:51:42', 'Array\n(\n    [numero] => 1\n    [equipo1] => 1\n    [equipo2] => 3\n    [fecha] => 2024-06-20\n    [hora] => 19:00:00\n    [fase] => 1\n    [valor1] => \n    [valor2] => \n    [ganador] => \n    [id] => 1\n)\n'),
+(1113, 'admin', 'EDITAR PARTIDO', '2024-06-06 11:51:48', 'Array\n(\n    [numero] => 2\n    [equipo1] => 2\n    [equipo2] => 4\n    [fecha] => 2024-06-21\n    [hora] => 19:00:00\n    [fase] => 1\n    [valor1] => \n    [valor2] => \n    [ganador] => \n    [id] => 2\n)\n'),
+(1114, 'admin', 'EDITAR PARTIDO', '2024-06-06 12:01:00', 'Array\n(\n    [numero] => 25\n    [equipo1] => 1\n    [equipo2] => 9\n    [fecha] => 2024-06-07\n    [hora] => 14:19:00\n    [fase] => 1\n    [valor1] => \n    [valor2] => \n    [ganador] => \n    [id] => 25\n)\n'),
+(1115, 'admin', 'BORRAR USUARIO', '2024-06-06 12:42:56', 'Array\n(\n    [user_id] => 46\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => ciudad prueba\n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => $2y$10$qgyZ.HjFn9O5AdyH/ZaLLuXw7sEO0rZKVPnI3UNtMGdq0bkO.a3c2\n    [user_delete] => \n    [user_current_user] => \n    [user_zona] => \n    [user_celular] => 3133192739\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 2\n    [user_paso] => 4\n    [user_fecha] => 2024-06-06 11:06:16\n)\n'),
+(1116, 'admin', 'EDITAR USUARIO', '2024-06-06 12:43:30', 'Array\n(\n    [user_names] => CRUZ PEDRAZA JHON JAIRO\n    [user_lastnames] => \n    [user_email] => juansesdvsf@gmail.com\n    [user_idnumber] => 93390913\n    [user_city] => \n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 93390913\n    [user_password] => \n    [user_delete] => 0\n    [user_current_user] => 0\n    [user_zona] => \n    [user_celular] => 312312\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 4\n    [user_fecha] => 2024-05-27 00:00:00\n    [user_id] => 8\n)\n'),
+(1117, 'admin', 'EDITAR USUARIO', '2024-06-06 12:43:37', 'Array\n(\n    [user_names] => CRUZ PEDRAZA JHON JAIRO\n    [user_lastnames] => \n    [user_email] => juansesdvsf@gmail.com\n    [user_idnumber] => 93390913\n    [user_city] => \n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 93390913\n    [user_password] => \n    [user_delete] => 0\n    [user_current_user] => 0\n    [user_zona] => \n    [user_celular] => 312312\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 4\n    [user_fecha] => 2024-05-27 00:00:00\n    [user_id] => 8\n)\n');
 
 -- --------------------------------------------------------
 
@@ -2440,9 +2499,10 @@ INSERT INTO `log` (`log_id`, `log_usuario`, `log_tipo`, `log_fecha`, `log_log`) 
 -- Table structure for table `octavos`
 --
 
-CREATE TABLE `octavos` (
-  `id` int(11) NOT NULL,
-  `usuario` int(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `octavos`;
+CREATE TABLE IF NOT EXISTS `octavos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario` int DEFAULT NULL,
   `a1` varchar(11) DEFAULT NULL,
   `a2` varchar(11) DEFAULT NULL,
   `b1` varchar(11) DEFAULT NULL,
@@ -2459,8 +2519,9 @@ CREATE TABLE `octavos` (
   `g2` varchar(11) DEFAULT NULL,
   `h1` varchar(11) DEFAULT NULL,
   `h2` varchar(11) DEFAULT NULL,
-  `fecha` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `fecha` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -2468,13 +2529,15 @@ CREATE TABLE `octavos` (
 -- Table structure for table `otros`
 --
 
-CREATE TABLE `otros` (
-  `id` int(11) NOT NULL,
-  `usuario` int(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `otros`;
+CREATE TABLE IF NOT EXISTS `otros` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario` int DEFAULT NULL,
   `goleador` varchar(100) DEFAULT NULL,
   `valla` varchar(100) DEFAULT NULL,
-  `fecha` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `fecha` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -2482,26 +2545,28 @@ CREATE TABLE `otros` (
 -- Table structure for table `partidos`
 --
 
-CREATE TABLE `partidos` (
-  `id` int(11) NOT NULL,
-  `numero` int(11) DEFAULT NULL,
-  `equipo1` int(11) DEFAULT NULL,
-  `equipo2` int(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `partidos`;
+CREATE TABLE IF NOT EXISTS `partidos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `numero` int DEFAULT NULL,
+  `equipo1` int DEFAULT NULL,
+  `equipo2` int DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   `hora` time DEFAULT NULL,
   `fase` varchar(11) DEFAULT '1',
   `valor1` varchar(11) DEFAULT NULL,
   `valor2` varchar(11) DEFAULT NULL,
-  `ganador` varchar(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `ganador` varchar(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `partidos`
 --
 
 INSERT INTO `partidos` (`id`, `numero`, `equipo1`, `equipo2`, `fecha`, `hora`, `fase`, `valor1`, `valor2`, `ganador`) VALUES
-(1, 1, 1, 3, '2024-06-20', '19:00:00', '1', '2', '2', '-1'),
-(2, 2, 2, 4, '2024-06-21', '19:00:00', '1', '2', '2', '-1'),
+(1, 1, 1, 3, '2024-06-20', '19:00:00', '1', '', '', ''),
+(2, 2, 2, 4, '2024-06-21', '19:00:00', '1', '', '', ''),
 (3, 3, 5, 6, '2024-06-22', '17:00:00', '1', '', '', ''),
 (4, 4, 8, 7, '2024-06-22', '20:00:00', '1', '', '', ''),
 (5, 5, 11, 9, '2024-06-23', '17:00:00', '1', '', '', ''),
@@ -2523,7 +2588,8 @@ INSERT INTO `partidos` (`id`, `numero`, `equipo1`, `equipo2`, `fecha`, `hora`, `
 (21, 21, 9, 8, '2024-07-01', '20:00:00', '1', '', '', ''),
 (22, 22, 11, 10, '2024-07-01', '20:00:00', '1', '', '', ''),
 (23, 23, 15, 14, '2024-07-02', '20:00:00', '1', '', '', ''),
-(24, 24, 16, 13, '2024-07-02', '20:00:00', '1', '', '', '');
+(24, 24, 16, 13, '2024-07-02', '20:00:00', '1', '', '', ''),
+(25, 25, 1, 9, '2024-06-07', '14:19:00', '1', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -2531,24 +2597,26 @@ INSERT INTO `partidos` (`id`, `numero`, `equipo1`, `equipo2`, `fecha`, `hora`, `
 -- Table structure for table `publicidad`
 --
 
-CREATE TABLE `publicidad` (
-  `publicidad_id` int(11) NOT NULL,
-  `publicidad_seccion` int(11) DEFAULT NULL,
+DROP TABLE IF EXISTS `publicidad`;
+CREATE TABLE IF NOT EXISTS `publicidad` (
+  `publicidad_id` int NOT NULL AUTO_INCREMENT,
+  `publicidad_seccion` int DEFAULT NULL,
   `publicidad_nombre` varchar(500) DEFAULT NULL,
   `publicidad_fecha` date DEFAULT NULL,
   `publicidad_imagen` varchar(500) DEFAULT NULL,
   `publicidad_imagenresponsive` varchar(255) DEFAULT NULL,
   `publicidad_color_fondo` varchar(255) DEFAULT NULL,
-  `publicidad_video` text DEFAULT NULL,
+  `publicidad_video` text,
   `publicidad_posicion` varchar(255) DEFAULT NULL,
-  `publicidad_descripcion` text DEFAULT NULL,
-  `publicidad_estado` int(11) DEFAULT NULL,
-  `publicidad_click` int(11) DEFAULT NULL,
+  `publicidad_descripcion` text,
+  `publicidad_estado` int DEFAULT NULL,
+  `publicidad_click` int DEFAULT NULL,
   `publicidad_enlace` varchar(500) DEFAULT NULL,
-  `publicidad_tipo_enlace` int(11) DEFAULT NULL,
+  `publicidad_tipo_enlace` int DEFAULT NULL,
   `publicidad_texto_enlace` varchar(255) DEFAULT NULL,
-  `orden` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `orden` int DEFAULT NULL,
+  PRIMARY KEY (`publicidad_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `publicidad`
@@ -2563,15 +2631,20 @@ INSERT INTO `publicidad` (`publicidad_id`, `publicidad_seccion`, `publicidad_nom
 -- Table structure for table `resultados`
 --
 
-CREATE TABLE `resultados` (
-  `id` int(11) NOT NULL,
-  `usuario` int(11) NOT NULL,
+DROP TABLE IF EXISTS `resultados`;
+CREATE TABLE IF NOT EXISTS `resultados` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario` int NOT NULL,
   `partido` varchar(11) NOT NULL,
   `valor1` varchar(11) NOT NULL,
   `valor2` varchar(11) NOT NULL,
   `ganador` varchar(11) DEFAULT NULL,
-  `fecha` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `fecha` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `usuario` (`usuario`),
+  KEY `partido` (`partido`),
+  KEY `ganador` (`ganador`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `resultados`
@@ -2588,15 +2661,17 @@ INSERT INTO `resultados` (`id`, `usuario`, `partido`, `valor1`, `valor2`, `ganad
 -- Table structure for table `semis`
 --
 
-CREATE TABLE `semis` (
-  `id` int(11) NOT NULL,
-  `usuario` varchar(255) DEFAULT NULL,
-  `e1` varchar(255) DEFAULT NULL,
-  `e2` varchar(255) DEFAULT NULL,
-  `e3` varchar(255) DEFAULT NULL,
-  `e4` varchar(255) DEFAULT NULL,
-  `fecha` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+DROP TABLE IF EXISTS `semis`;
+CREATE TABLE IF NOT EXISTS `semis` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `usuario` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `e1` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `e2` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `e3` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `e4` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `fecha` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
 -- Dumping data for table `semis`
@@ -2611,22 +2686,25 @@ INSERT INTO `semis` (`id`, `usuario`, `e1`, `e2`, `e3`, `e4`, `fecha`) VALUES
 -- Table structure for table `user`
 --
 
-CREATE TABLE `user` (
-  `user_id` bigint(20) NOT NULL,
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE IF NOT EXISTS `user` (
+  `user_id` bigint NOT NULL AUTO_INCREMENT,
   `user_date` date DEFAULT NULL,
   `user_names` varchar(255) DEFAULT NULL,
   `user_cedula` varchar(255) DEFAULT NULL,
   `user_email` varchar(255) DEFAULT NULL,
   `user_telefono` varchar(255) DEFAULT NULL,
-  `user_level` int(11) DEFAULT NULL,
-  `user_state` int(11) DEFAULT NULL,
+  `user_level` int DEFAULT NULL,
+  `user_state` int DEFAULT NULL,
   `user_user` varchar(255) DEFAULT NULL,
   `user_password` varchar(255) DEFAULT NULL,
-  `user_delete` int(11) DEFAULT NULL,
-  `user_current_user` bigint(20) DEFAULT NULL,
+  `user_delete` int DEFAULT NULL,
+  `user_current_user` bigint DEFAULT NULL,
   `user_code` varchar(500) DEFAULT NULL,
-  `user_empresa` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `user_empresa` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_user` (`user_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -2641,319 +2719,43 @@ INSERT INTO `user` (`user_id`, `user_date`, `user_names`, `user_cedula`, `user_e
 -- Table structure for table `userpolla`
 --
 
-CREATE TABLE `userpolla` (
-  `user_id` int(11) NOT NULL,
-  `user_names` varchar(255) DEFAULT NULL,
-  `user_lastnames` varchar(255) DEFAULT NULL,
-  `user_email` varchar(255) DEFAULT NULL,
-  `user_idnumber` varchar(255) DEFAULT NULL,
-  `user_city` varchar(255) DEFAULT NULL,
-  `user_country` varchar(255) DEFAULT NULL,
-  `user_phone` varchar(255) DEFAULT NULL,
-  `user_address` varchar(255) DEFAULT NULL,
-  `user_level` int(11) DEFAULT NULL,
-  `user_state` varchar(255) DEFAULT NULL,
-  `user_user` varchar(255) DEFAULT NULL,
-  `user_password` varchar(255) DEFAULT NULL,
-  `user_delete` varchar(255) DEFAULT NULL,
-  `user_current_user` varchar(255) DEFAULT NULL,
-  `user_zona` varchar(255) DEFAULT NULL,
-  `user_celular` varchar(255) DEFAULT NULL,
-  `user_puntos` varchar(255) DEFAULT NULL,
-  `user_marcadores` varchar(255) DEFAULT NULL,
-  `user_ganadores` varchar(255) DEFAULT NULL,
-  `user_otros` varchar(255) DEFAULT NULL,
-  `user_total` varchar(255) DEFAULT NULL,
-  `user_cuotas` varchar(255) DEFAULT NULL,
-  `user_paso` varchar(255) DEFAULT NULL,
-  `user_fecha` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+DROP TABLE IF EXISTS `userpolla`;
+CREATE TABLE IF NOT EXISTS `userpolla` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `user_names` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_lastnames` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_email` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_idnumber` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_city` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_country` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_phone` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_address` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_level` int DEFAULT NULL,
+  `user_state` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_user` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_password` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_delete` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_current_user` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_zona` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_celular` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_puntos` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_marcadores` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_ganadores` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_otros` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_total` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_cuotas` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_paso` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
+  `user_fecha` datetime DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
 -- Dumping data for table `userpolla`
 --
 
 INSERT INTO `userpolla` (`user_id`, `user_names`, `user_lastnames`, `user_email`, `user_idnumber`, `user_city`, `user_country`, `user_phone`, `user_address`, `user_level`, `user_state`, `user_user`, `user_password`, `user_delete`, `user_current_user`, `user_zona`, `user_celular`, `user_puntos`, `user_marcadores`, `user_ganadores`, `user_otros`, `user_total`, `user_cuotas`, `user_paso`, `user_fecha`) VALUES
-(1, 'JUAN SEBASTIAN SANDOVAL VARGAS', '', 'desarrollo8@omegawebsystems.com', '1100973339', '', '', '', '', 2, '1', '1100973339', '$2y$10$865VQ6xxU21Roj1fkv/kA.HIIfViI5Bf56hAXM2xehpy7MnxG7VFm', '0', '0', '', '3212312312', '470', '0', '2', '3', '5', '1', '4', '2024-05-15'),
-(2, 'GUZMAN ARGUELLO ESPERANZA', '', 'prueba@prueba.com', '38284216', '', '', '', '', 2, '1', '38284216', '1234', '', '', '', '31224345', '10', '0', '1', '0', '1', '1', '4', '2024-05-27');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `archivos`
---
-ALTER TABLE `archivos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `cedulas`
---
-ALTER TABLE `cedulas`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `cedula` (`cedula`);
-
---
--- Indexes for table `clasificados`
---
-ALTER TABLE `clasificados`
-  ADD PRIMARY KEY (`clasificado_id`);
-
---
--- Indexes for table `configuracion`
---
-ALTER TABLE `configuracion`
-  ADD PRIMARY KEY (`config_id`);
-
---
--- Indexes for table `contenido`
---
-ALTER TABLE `contenido`
-  ADD PRIMARY KEY (`contenido_id`);
-
---
--- Indexes for table `cuartos`
---
-ALTER TABLE `cuartos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `enlaces`
---
-ALTER TABLE `enlaces`
-  ADD PRIMARY KEY (`enlaces_id`);
-
---
--- Indexes for table `equipos`
---
-ALTER TABLE `equipos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `fases`
---
-ALTER TABLE `fases`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `final`
---
-ALTER TABLE `final`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `grupos`
---
-ALTER TABLE `grupos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `info_pagina`
---
-ALTER TABLE `info_pagina`
-  ADD PRIMARY KEY (`info_pagina_id`);
-
---
--- Indexes for table `jugadores`
---
-ALTER TABLE `jugadores`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nombre` (`nombre`);
-
---
--- Indexes for table `log`
---
-ALTER TABLE `log`
-  ADD PRIMARY KEY (`log_id`);
-
---
--- Indexes for table `octavos`
---
-ALTER TABLE `octavos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `otros`
---
-ALTER TABLE `otros`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `partidos`
---
-ALTER TABLE `partidos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `publicidad`
---
-ALTER TABLE `publicidad`
-  ADD PRIMARY KEY (`publicidad_id`);
-
---
--- Indexes for table `resultados`
---
-ALTER TABLE `resultados`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `usuario` (`usuario`),
-  ADD KEY `partido` (`partido`),
-  ADD KEY `ganador` (`ganador`);
-
---
--- Indexes for table `semis`
---
-ALTER TABLE `semis`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`),
-  ADD UNIQUE KEY `user_user` (`user_user`);
-
---
--- Indexes for table `userpolla`
---
-ALTER TABLE `userpolla`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `archivos`
---
-ALTER TABLE `archivos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `cedulas`
---
-ALTER TABLE `cedulas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
-
---
--- AUTO_INCREMENT for table `clasificados`
---
-ALTER TABLE `clasificados`
-  MODIFY `clasificado_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `configuracion`
---
-ALTER TABLE `configuracion`
-  MODIFY `config_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `contenido`
---
-ALTER TABLE `contenido`
-  MODIFY `contenido_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `cuartos`
---
-ALTER TABLE `cuartos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `enlaces`
---
-ALTER TABLE `enlaces`
-  MODIFY `enlaces_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `equipos`
---
-ALTER TABLE `equipos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
---
--- AUTO_INCREMENT for table `fases`
---
-ALTER TABLE `fases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `final`
---
-ALTER TABLE `final`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `grupos`
---
-ALTER TABLE `grupos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `info_pagina`
---
-ALTER TABLE `info_pagina`
-  MODIFY `info_pagina_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `jugadores`
---
-ALTER TABLE `jugadores`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=736;
-
---
--- AUTO_INCREMENT for table `log`
---
-ALTER TABLE `log`
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1089;
-
---
--- AUTO_INCREMENT for table `octavos`
---
-ALTER TABLE `octavos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `otros`
---
-ALTER TABLE `otros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `partidos`
---
-ALTER TABLE `partidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-
---
--- AUTO_INCREMENT for table `publicidad`
---
-ALTER TABLE `publicidad`
-  MODIFY `publicidad_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `resultados`
---
-ALTER TABLE `resultados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `semis`
---
-ALTER TABLE `semis`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `userpolla`
---
-ALTER TABLE `userpolla`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+(8, 'CRUZ PEDRAZA JHON JAIRO', '', 'juansesdvsf@gmail.com', '93390913', '', '', '', '', 2, '1', '93390913', '$2y$10$cpkgywTcij.h72kMsU9gNOBk0kuhiNEwhogB6OdoDJXWvf/50wKf6', '0', '0', '', '312312', '0', '0', '0', '0', '0', '1', '4', '2024-05-27 00:00:00'),
+(47, 'JUAN SEBASTIAN SANDOVAL VARGAS', '', 'desarrollo8@omegawebsystems.com', '1100973339', 'ciudad prueba', '', '', '', 2, '1', '1100973339', '$2y$10$Hsr9LZ4KFb48wxARH0R7uOScZCnftb92doZqwOB/0dmPfgab4vdiu', '', '', '', '3133192739', '0', '0', '0', '0', '0', '1', '4', '2024-06-06 12:06:46');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

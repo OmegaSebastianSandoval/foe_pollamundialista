@@ -144,11 +144,11 @@ class Page_jugarController extends Page_mainController
 		$resultadosModel = new Administracion_Model_DbTable_Resultados();
 		$partidosModel = new Administracion_Model_DbTable_Partidos();
 		$equiposModel = new Administracion_Model_DbTable_Equipos();
-
+		
 		$configModel = new Administracion_Model_DbTable_Config();
 		$config = $configModel->getById(1);
 		$this->_view->horasminimo = $config->config_horasminimo;
-
+		
 		$partidosEnviados = $_POST['partidos_enviados'] ?? [];
 
 		print_r($partidosEnviados);
@@ -159,9 +159,6 @@ class Page_jugarController extends Page_mainController
 			if ($valor1 >= 0 && $valor2 >= 0) {
 				$resultados[$partidoId]['partido'] = $partidoId;
 				$resultados[$partidoId]['info'] = $partido;
-
-				$resultados[$partidoId]['info']->diferencia = $this->diferenciaHoras($partido->fecha . " " . $partido->hora);
-
 				$resultados[$partidoId]['info']->equipo1 = $equiposModel->getById($partido->equipo1);
 				$resultados[$partidoId]['info']->equipo2 = $equiposModel->getById($partido->equipo2);
 				$resultados[$partidoId]['valor1'] = $this->_getSanitizedParam("valor1_" . $partidoId);

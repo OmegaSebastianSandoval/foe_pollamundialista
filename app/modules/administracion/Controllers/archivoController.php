@@ -229,7 +229,7 @@ class Administracion_archivoController extends Administracion_mainController
 			$data['activo'] = (int)$fila["C"];
 
 			$existe = $cedulasModel->getList("cedula = ".$data['cedula']);
-print_r($fila);
+
 			if($data['cedula']!="" && !$existe){
 				$cedulasModel->insert($data);
 			}

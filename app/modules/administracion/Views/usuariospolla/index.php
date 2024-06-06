@@ -4,7 +4,7 @@
         <div class="content-dashboard">
             <div class="row">
 				<div class="col-3">
-		            <label>user_names</label>
+		            <label>Nombre</label>
 		            <label class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text input-icono fondo-cafe " ><i class="fas fa-pencil-alt"></i></span>
@@ -13,7 +13,7 @@
 		            </label>
 		        </div>
 				<div class="col-3">
-		            <label>user_email</label>
+		            <label>Correo</label>
 		            <label class="input-group">
 							<div class="input-group-prepend">
 								<span class="input-group-text input-icono fondo-verde-claro " ><i class="fas fa-pencil-alt"></i></span>
@@ -77,8 +77,8 @@
 		<table class=" table table-striped  table-hover table-administrator text-left">
 			<thead>
 				<tr>
-					<td>user_names</td>
-					<td>user_email</td>
+					<td>Nombre</td>
+					<td>Correo</td>
 					<td width="100"></td>
 				</tr>
 			</thead>

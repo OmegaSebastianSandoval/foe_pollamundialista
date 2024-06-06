@@ -232,9 +232,9 @@
 												" width="20%" style="min-height: 68px;">
 
 													<?php if ($diferencia >= $this->horasminimo && $fechas[$partido->fecha] >= 1) { ?>
-														<input name="valor1_<?php echo $partido->id; ?>"  type="number" id="valor1_<?php echo $partido->id; ?>" size="2" value="<?php echo $partido->resultado_valor1; ?>" class="marcador input_field w-100 w-md-50 w-lg-25" />
+														<input name="valor1_<?php echo $partido->id; ?>" min="0" max="15"  type="number" id="valor1_<?php echo $partido->id; ?>" size="2" value="<?php echo $partido->resultado_valor1; ?>" class="marcador input_field w-100 w-md-50 w-lg-25" />
 														-
-														<input name="valor2_<?php echo $partido->id; ?>"  type="number" id="valor2_<?php echo $partido->id; ?>" size="2" value="<?php echo $partido->resultado_valor2; ?>" class="marcador input_field  w-100 w-md-50 w-lg-25" />
+														<input name="valor2_<?php echo $partido->id; ?>" min="0" max="15"  type="number" id="valor2_<?php echo $partido->id; ?>" size="2" value="<?php echo $partido->resultado_valor2; ?>" class="marcador input_field  w-100 w-md-50 w-lg-25" />
 														<input type="hidden" name="partidos_enviados[]" value="<?php echo $partido->id; ?>">
 
 													<?php } else { ?>
