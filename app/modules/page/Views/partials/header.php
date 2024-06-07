@@ -118,6 +118,7 @@
             <!-- Navbar -->
             <nav class="nav-menus">
                 <li class="<?php echo $this->botonactivo == 1 ? 'active' : '' ?>"><a href="/" class="nav-l"> Inicio</a></li>
+
                 <?php if (!$_SESSION['kt_login_id']) { ?>
                     <li class="<?php echo $this->botonactivo == 2 ? 'active' : '' ?>"><a href="/page/inscribase" class="nav-l only-phone"> Inscríbase</a></li>
                 <?php } ?>
@@ -126,8 +127,10 @@
                 <li class="<?php echo $this->botonactivo == 7 ? 'active' : '' ?>"><a href="/page/premios" class="nav-l only-phone"> Premios</a></li>
                 <li class="<?php echo $this->botonactivo == 8 ? 'active' : '' ?>"><a href="/page/terminos" class="nav-l only-phone"> Términos</a></li>
 
+                <?php if ($this->config->config_estado == 1) { ?>
+                    <li class="<?php echo $this->botonactivo == 2 ? 'active' : '' ?>"><a href="/page/jugar/" class="nav-l">Jugar Polla</a></li>
+                <?php } ?>
 
-                <li class="<?php echo $this->botonactivo == 2 ? 'active' : '' ?>"><a href="/page/jugar/" class="nav-l">Jugar Polla</a></li>
                 <li class="<?php echo $this->botonactivo == 4 ? 'active' : '' ?>"><a href="/page/partidos/" class="nav-l"> Partidos</a></li>
                 <li class="<?php echo $this->botonactivo == 3 ? 'active' : '' ?>"><a href="/page/grupos/" class="nav-l">Grupos</a></li>
 
@@ -164,4 +167,4 @@
             display: none !important;
         }
     </style>
-<?php } ?> 
+<?php } ?>

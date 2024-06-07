@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jun 06, 2024 at 07:30 PM
+-- Generation Time: Jun 07, 2024 at 05:39 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.18
 
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `cedulas` (
   `clave` varchar(10) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `cedula` (`cedula`)
-) ENGINE=MyISAM AUTO_INCREMENT=162 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=163 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
 -- Dumping data for table `cedulas`
@@ -286,6 +286,7 @@ INSERT INTO `clasificados` (`clasificado_id`, `clasificado_octavos_a1`, `clasifi
 
 DROP TABLE IF EXISTS `configuracion`;
 CREATE TABLE IF NOT EXISTS `configuracion` (
+  `config_estado` int DEFAULT NULL,
   `config_id` int NOT NULL AUTO_INCREMENT,
   `config_valorcuota` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
   `config_interes` varchar(255) COLLATE utf8mb3_spanish_ci DEFAULT NULL,
@@ -317,8 +318,8 @@ CREATE TABLE IF NOT EXISTS `configuracion` (
 -- Dumping data for table `configuracion`
 --
 
-INSERT INTO `configuracion` (`config_id`, `config_valorcuota`, `config_interes`, `config_horasminimo`, `config_gruposmarcador`, `config_gruposequipo`, `config_gruposempate`, `config_1puestooctavos`, `config_2puestooctavos`, `config_octavosmarcador`, `config_octavosequipo`, `config_cuartosclasificado`, `config_cuartosmarcador`, `config_cuartosganador`, `config_semisclasificado`, `config_semismarcador`, `config_semisequipo`, `config_finalesmarcadores`, `config_campeon`, `config_subcampeon`, `config_tercero`, `config_cuarto`, `config_goleador`, `config_valla`) VALUES
-(1, '50719', '1.14', '3', '150', '20', '10', '100', '10', '200', '30', '150', '200', '30', '150', '250', '40', '300', '500', '250', '200', '50', '150', '150');
+INSERT INTO `configuracion` (`config_estado`, `config_id`, `config_valorcuota`, `config_interes`, `config_horasminimo`, `config_gruposmarcador`, `config_gruposequipo`, `config_gruposempate`, `config_1puestooctavos`, `config_2puestooctavos`, `config_octavosmarcador`, `config_octavosequipo`, `config_cuartosclasificado`, `config_cuartosmarcador`, `config_cuartosganador`, `config_semisclasificado`, `config_semismarcador`, `config_semisequipo`, `config_finalesmarcadores`, `config_campeon`, `config_subcampeon`, `config_tercero`, `config_cuarto`, `config_goleador`, `config_valla`) VALUES
+(1, 1, '50719', '1.14', '3', '150', '20', '10', '100', '10', '200', '30', '150', '200', '30', '150', '250', '40', '300', '500', '250', '200', '50', '150', '150');
 
 -- --------------------------------------------------------
 
@@ -1362,7 +1363,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   `log_fecha` datetime DEFAULT NULL,
   `log_log` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
   PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1118 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=1135 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_spanish_ci;
 
 --
 -- Dumping data for table `log`
@@ -2491,7 +2492,24 @@ INSERT INTO `log` (`log_id`, `log_usuario`, `log_tipo`, `log_fecha`, `log_log`) 
 (1114, 'admin', 'EDITAR PARTIDO', '2024-06-06 12:01:00', 'Array\n(\n    [numero] => 25\n    [equipo1] => 1\n    [equipo2] => 9\n    [fecha] => 2024-06-07\n    [hora] => 14:19:00\n    [fase] => 1\n    [valor1] => \n    [valor2] => \n    [ganador] => \n    [id] => 25\n)\n'),
 (1115, 'admin', 'BORRAR USUARIO', '2024-06-06 12:42:56', 'Array\n(\n    [user_id] => 46\n    [user_names] => JUAN SEBASTIAN SANDOVAL VARGAS\n    [user_lastnames] => \n    [user_email] => desarrollo8@omegawebsystems.com\n    [user_idnumber] => 1100973339\n    [user_city] => ciudad prueba\n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 1100973339\n    [user_password] => $2y$10$qgyZ.HjFn9O5AdyH/ZaLLuXw7sEO0rZKVPnI3UNtMGdq0bkO.a3c2\n    [user_delete] => \n    [user_current_user] => \n    [user_zona] => \n    [user_celular] => 3133192739\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 2\n    [user_paso] => 4\n    [user_fecha] => 2024-06-06 11:06:16\n)\n'),
 (1116, 'admin', 'EDITAR USUARIO', '2024-06-06 12:43:30', 'Array\n(\n    [user_names] => CRUZ PEDRAZA JHON JAIRO\n    [user_lastnames] => \n    [user_email] => juansesdvsf@gmail.com\n    [user_idnumber] => 93390913\n    [user_city] => \n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 93390913\n    [user_password] => \n    [user_delete] => 0\n    [user_current_user] => 0\n    [user_zona] => \n    [user_celular] => 312312\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 4\n    [user_fecha] => 2024-05-27 00:00:00\n    [user_id] => 8\n)\n'),
-(1117, 'admin', 'EDITAR USUARIO', '2024-06-06 12:43:37', 'Array\n(\n    [user_names] => CRUZ PEDRAZA JHON JAIRO\n    [user_lastnames] => \n    [user_email] => juansesdvsf@gmail.com\n    [user_idnumber] => 93390913\n    [user_city] => \n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 93390913\n    [user_password] => \n    [user_delete] => 0\n    [user_current_user] => 0\n    [user_zona] => \n    [user_celular] => 312312\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 4\n    [user_fecha] => 2024-05-27 00:00:00\n    [user_id] => 8\n)\n');
+(1117, 'admin', 'EDITAR USUARIO', '2024-06-06 12:43:37', 'Array\n(\n    [user_names] => CRUZ PEDRAZA JHON JAIRO\n    [user_lastnames] => \n    [user_email] => juansesdvsf@gmail.com\n    [user_idnumber] => 93390913\n    [user_city] => \n    [user_country] => \n    [user_phone] => \n    [user_address] => \n    [user_level] => 2\n    [user_state] => 1\n    [user_user] => 93390913\n    [user_password] => \n    [user_delete] => 0\n    [user_current_user] => 0\n    [user_zona] => \n    [user_celular] => 312312\n    [user_puntos] => 0\n    [user_marcadores] => 0\n    [user_ganadores] => 0\n    [user_otros] => 0\n    [user_total] => 0\n    [user_cuotas] => 1\n    [user_paso] => 4\n    [user_fecha] => 2024-05-27 00:00:00\n    [user_id] => 8\n)\n'),
+(1118, '1100973339', '', '2024-06-06 14:58:36', ''),
+(1119, '1100973339', '', '2024-06-06 14:58:36', ''),
+(1120, 'admin', 'LOGIN', '2024-06-06 15:10:35', ''),
+(1121, 'admin', 'EDITAR PARTIDO', '2024-06-06 15:10:54', 'Array\n(\n    [numero] => 25\n    [equipo1] => 1\n    [equipo2] => 9\n    [fecha] => 2024-06-06\n    [hora] => 14:19:00\n    [fase] => 1\n    [valor1] => \n    [valor2] => \n    [ganador] => \n    [id] => 25\n)\n'),
+(1122, 'admin', 'EDITAR PARTIDO', '2024-06-06 15:11:30', 'Array\n(\n    [numero] => 25\n    [equipo1] => 1\n    [equipo2] => 9\n    [fecha] => 2024-06-06\n    [hora] => 17:13:00\n    [fase] => 1\n    [valor1] => \n    [valor2] => \n    [ganador] => \n    [id] => 25\n)\n'),
+(1123, 'admin', 'EDITAR PARTIDO', '2024-06-06 15:11:43', 'Array\n(\n    [numero] => 25\n    [equipo1] => 1\n    [equipo2] => 9\n    [fecha] => 2024-06-06\n    [hora] => 18:13:00\n    [fase] => 1\n    [valor1] => \n    [valor2] => \n    [ganador] => \n    [id] => 25\n)\n'),
+(1124, '1100973339', '', '2024-06-06 15:32:11', ''),
+(1125, '1100973339', '', '2024-06-06 15:32:11', ''),
+(1126, '1100973339', '', '2024-06-06 15:32:11', ''),
+(1127, '1100973339', '', '2024-06-06 15:35:43', ''),
+(1128, '1100973339', '', '2024-06-06 15:35:43', ''),
+(1129, '1100973339', '', '2024-06-06 15:35:43', ''),
+(1130, 'admin', 'CREAR CEDULA', '2024-06-06 15:38:52', 'Array\n(\n    [cedula] => \n    [nombre] => \n    [activo] => \n    [clave] => \n    [id] => 162\n)\n'),
+(1131, 'admin', 'BORRAR CEDULA', '2024-06-06 15:39:02', 'Array\n(\n    [id] => 162\n    [cedula] => \n    [nombre] => \n    [activo] => \n    [clave] => \n)\n'),
+(1132, 'admin', 'EDITAR CONFIG', '2024-06-07 12:21:40', 'Array\n(\n    [config_valorcuota] => 50719\n    [config_interes] => 1.14\n    [config_horasminimo] => 3\n    [config_estado] => 1\n    [config_gruposmarcador] => 150\n    [config_gruposequipo] => 20\n    [config_gruposempate] => 10\n    [config_1puestooctavos] => 100\n    [config_2puestooctavos] => 10\n    [config_octavosmarcador] => 200\n    [config_octavosequipo] => 30\n    [config_cuartosclasificado] => 150\n    [config_cuartosmarcador] => 200\n    [config_cuartosganador] => 30\n    [config_semisclasificado] => 150\n    [config_semismarcador] => 250\n    [config_semisequipo] => 40\n    [config_finalesmarcadores] => 300\n    [config_campeon] => 500\n    [config_subcampeon] => 250\n    [config_tercero] => 200\n    [config_cuarto] => 50\n    [config_goleador] => 150\n    [config_valla] => 150\n    [config_id] => 1\n)\n'),
+(1133, 'admin', 'EDITAR CONFIG', '2024-06-07 12:23:26', 'Array\n(\n    [config_valorcuota] => 50719\n    [config_interes] => 1.14\n    [config_horasminimo] => 3\n    [config_estado] => 0\n    [config_gruposmarcador] => 150\n    [config_gruposequipo] => 20\n    [config_gruposempate] => 10\n    [config_1puestooctavos] => 100\n    [config_2puestooctavos] => 10\n    [config_octavosmarcador] => 200\n    [config_octavosequipo] => 30\n    [config_cuartosclasificado] => 150\n    [config_cuartosmarcador] => 200\n    [config_cuartosganador] => 30\n    [config_semisclasificado] => 150\n    [config_semismarcador] => 250\n    [config_semisequipo] => 40\n    [config_finalesmarcadores] => 300\n    [config_campeon] => 500\n    [config_subcampeon] => 250\n    [config_tercero] => 200\n    [config_cuarto] => 50\n    [config_goleador] => 150\n    [config_valla] => 150\n    [config_id] => 1\n)\n'),
+(1134, 'admin', 'EDITAR CONFIG', '2024-06-07 12:26:06', 'Array\n(\n    [config_valorcuota] => 50719\n    [config_interes] => 1.14\n    [config_horasminimo] => 3\n    [config_estado] => 1\n    [config_gruposmarcador] => 150\n    [config_gruposequipo] => 20\n    [config_gruposempate] => 10\n    [config_1puestooctavos] => 100\n    [config_2puestooctavos] => 10\n    [config_octavosmarcador] => 200\n    [config_octavosequipo] => 30\n    [config_cuartosclasificado] => 150\n    [config_cuartosmarcador] => 200\n    [config_cuartosganador] => 30\n    [config_semisclasificado] => 150\n    [config_semismarcador] => 250\n    [config_semisequipo] => 40\n    [config_finalesmarcadores] => 300\n    [config_campeon] => 500\n    [config_subcampeon] => 250\n    [config_tercero] => 200\n    [config_cuarto] => 50\n    [config_goleador] => 150\n    [config_valla] => 150\n    [config_id] => 1\n)\n');
 
 -- --------------------------------------------------------
 
@@ -2589,7 +2607,7 @@ INSERT INTO `partidos` (`id`, `numero`, `equipo1`, `equipo2`, `fecha`, `hora`, `
 (22, 22, 11, 10, '2024-07-01', '20:00:00', '1', '', '', ''),
 (23, 23, 15, 14, '2024-07-02', '20:00:00', '1', '', '', ''),
 (24, 24, 16, 13, '2024-07-02', '20:00:00', '1', '', '', ''),
-(25, 25, 1, 9, '2024-06-07', '14:19:00', '1', '', '', '');
+(25, 25, 1, 9, '2024-06-06', '18:13:00', '1', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -2644,7 +2662,7 @@ CREATE TABLE IF NOT EXISTS `resultados` (
   KEY `usuario` (`usuario`),
   KEY `partido` (`partido`),
   KEY `ganador` (`ganador`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `resultados`
@@ -2653,7 +2671,11 @@ CREATE TABLE IF NOT EXISTS `resultados` (
 INSERT INTO `resultados` (`id`, `usuario`, `partido`, `valor1`, `valor2`, `ganador`, `fecha`) VALUES
 (2, 1, '1', '1', '0', '1', '2024-05-20 12:35:01'),
 (3, 1, '2', '1', '2', '4', '2024-05-20 12:35:01'),
-(6, 2, '1', '1', '2', '3', '2024-05-27 10:40:07');
+(6, 2, '1', '1', '2', '3', '2024-05-27 10:40:07'),
+(7, 47, '25', '1', '4', '9', '2024-06-06 14:58:36'),
+(12, 47, '1', '3', '0', '1', '2024-06-06 15:35:43'),
+(13, 47, '3', '2', '2', '-1', '2024-06-06 15:35:43'),
+(14, 47, '4', '3', '1', '8', '2024-06-06 15:35:43');
 
 -- --------------------------------------------------------
 

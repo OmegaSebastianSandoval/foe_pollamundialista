@@ -18,7 +18,11 @@ class Page_mainController extends Controllers_Abstract
 		$this->_view->fasesBotonera = $fasesModel->getList("estado = 1", "orden ASC");
 
 
+		$configModel = new Administracion_Model_DbTable_Config();
+		$config = $configModel->getById(1);
+		$this->_view->config = $config;	
 
+		
 		$user_user = Session::getInstance()->get("kt_login_user");
 		if (!empty($user_user)) {
 

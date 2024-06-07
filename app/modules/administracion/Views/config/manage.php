@@ -7,7 +7,14 @@
 			<?php if ($this->content->config_id) { ?>
 				<input type="hidden" name="id" id="id" value="<?= $this->content->config_id; ?>" />
 			<?php } ?>
+			<div class="col-2 form-group">
+					<label   class="control-label">Activar Polla</label>
+					<br>
+					<input type="checkbox" name="config_estado" value="1" class="form-control switch-form" <?php if ($this->getObjectVariable($this->content, 'config_estado') == 1) { echo "checked";} ?>   ></input>
+					<div class="help-block with-errors"></div>
+				</div>
 			<div class="row">
+				
 				<div class="col-4 form-group">
 					<label for="config_valorcuota" class="control-label">valor cuota</label>
 					<label class="input-group">

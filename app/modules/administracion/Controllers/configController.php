@@ -221,6 +221,12 @@ class Administracion_configController extends Administracion_mainController
 		$data['config_interes'] = $this->_getSanitizedParam("config_interes");
 		$data['config_horasminimo'] = $this->_getSanitizedParam("config_horasminimo");
 
+		if ($this->_getSanitizedParam("config_estado") == '') {
+			$data['config_estado'] = '0';
+		  } else {
+			$data['config_estado'] = $this->_getSanitizedParam("config_estado");
+		  }
+
 		if($this->_getSanitizedParam("config_gruposmarcador") == '' ) {
 			$data['config_gruposmarcador'] = '0';
 		} else {

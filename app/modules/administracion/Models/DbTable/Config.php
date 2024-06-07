@@ -22,6 +22,8 @@ class Administracion_Model_DbTable_Config extends Db_Table
 	 * @return integer      identificador del  registro que se inserto
 	 */
 	public function insert($data){
+		$config_estado = $data['config_estado'];
+
 		$config_valorcuota = $data['config_valorcuota'];
 		$config_interes = $data['config_interes'];
 		$config_gruposmarcador = $data['config_gruposmarcador'];
@@ -44,7 +46,7 @@ class Administracion_Model_DbTable_Config extends Db_Table
 		$config_cuarto = $data['config_cuarto'];
 		$config_goleador = $data['config_goleador'];
 		$config_valla = $data['config_valla'];
-		$query = "INSERT INTO configuracion( config_valorcuota, config_interes, config_gruposmarcador, config_gruposequipo, config_gruposempate, config_1puestooctavos, config_2puestooctavos, config_octavosmarcador, config_octavosequipo, config_cuartosclasificado, config_cuartosmarcador, config_cuartosganador, config_semisclasificado, config_semismarcador, config_semisequipo, config_finalesmarcadores, config_campeon, config_subcampeon, config_tercero, config_cuarto, config_goleador, config_valla) VALUES ( '$config_valorcuota', '$config_interes', '$config_gruposmarcador', '$config_gruposequipo', '$config_gruposempate', '$config_1puestooctavos', '$config_2puestooctavos', '$config_octavosmarcador', '$config_octavosequipo', '$config_cuartosclasificado', '$config_cuartosmarcador', '$config_cuartosganador', '$config_semisclasificado', '$config_semismarcador', '$config_semisequipo', '$config_finalesmarcadores', '$config_campeon', '$config_subcampeon', '$config_tercero', '$config_cuarto', '$config_goleador', '$config_valla')";
+		$query = "INSERT INTO configuracion(config_estado, config_valorcuota, config_interes, config_gruposmarcador, config_gruposequipo, config_gruposempate, config_1puestooctavos, config_2puestooctavos, config_octavosmarcador, config_octavosequipo, config_cuartosclasificado, config_cuartosmarcador, config_cuartosganador, config_semisclasificado, config_semismarcador, config_semisequipo, config_finalesmarcadores, config_campeon, config_subcampeon, config_tercero, config_cuarto, config_goleador, config_valla) VALUES ( '$config_estado','$config_valorcuota', '$config_interes', '$config_gruposmarcador', '$config_gruposequipo', '$config_gruposempate', '$config_1puestooctavos', '$config_2puestooctavos', '$config_octavosmarcador', '$config_octavosequipo', '$config_cuartosclasificado', '$config_cuartosmarcador', '$config_cuartosganador', '$config_semisclasificado', '$config_semismarcador', '$config_semisequipo', '$config_finalesmarcadores', '$config_campeon', '$config_subcampeon', '$config_tercero', '$config_cuarto', '$config_goleador', '$config_valla')";
 		$res = $this->_conn->query($query);
         return mysqli_insert_id($this->_conn->getConnection());
 	}
@@ -56,6 +58,7 @@ class Administracion_Model_DbTable_Config extends Db_Table
 	 * @return void
 	 */
 	public function update($data,$id){
+		$config_estado = $data['config_estado'];
 		
 		$config_valorcuota = $data['config_valorcuota'];
 		$config_interes = $data['config_interes'];
@@ -80,7 +83,7 @@ class Administracion_Model_DbTable_Config extends Db_Table
 		$config_cuarto = $data['config_cuarto'];
 		$config_goleador = $data['config_goleador'];
 		$config_valla = $data['config_valla'];
-		$query = "UPDATE configuracion SET  config_valorcuota = '$config_valorcuota', config_interes = '$config_interes', config_horasminimo = '$config_horasminimo', config_gruposmarcador = '$config_gruposmarcador', config_gruposequipo = '$config_gruposequipo', config_gruposempate = '$config_gruposempate', config_1puestooctavos = '$config_1puestooctavos', config_2puestooctavos = '$config_2puestooctavos', config_octavosmarcador = '$config_octavosmarcador', config_octavosequipo = '$config_octavosequipo', config_cuartosclasificado = '$config_cuartosclasificado', config_cuartosmarcador = '$config_cuartosmarcador', config_cuartosganador = '$config_cuartosganador',  config_semisclasificado = '$config_semisclasificado', config_semismarcador = '$config_semismarcador', config_semisequipo = '$config_semisequipo', config_finalesmarcadores = '$config_finalesmarcadores', config_campeon = '$config_campeon', config_subcampeon = '$config_subcampeon', config_tercero = '$config_tercero', config_cuarto = '$config_cuarto', config_goleador = '$config_goleador', config_valla = '$config_valla' WHERE config_id = '".$id."'";
+		$query = "UPDATE configuracion SET  config_estado = '$config_estado',  config_valorcuota = '$config_valorcuota', config_interes = '$config_interes', config_horasminimo = '$config_horasminimo', config_gruposmarcador = '$config_gruposmarcador', config_gruposequipo = '$config_gruposequipo', config_gruposempate = '$config_gruposempate', config_1puestooctavos = '$config_1puestooctavos', config_2puestooctavos = '$config_2puestooctavos', config_octavosmarcador = '$config_octavosmarcador', config_octavosequipo = '$config_octavosequipo', config_cuartosclasificado = '$config_cuartosclasificado', config_cuartosmarcador = '$config_cuartosmarcador', config_cuartosganador = '$config_cuartosganador',  config_semisclasificado = '$config_semisclasificado', config_semismarcador = '$config_semismarcador', config_semisequipo = '$config_semisequipo', config_finalesmarcadores = '$config_finalesmarcadores', config_campeon = '$config_campeon', config_subcampeon = '$config_subcampeon', config_tercero = '$config_tercero', config_cuarto = '$config_cuarto', config_goleador = '$config_goleador', config_valla = '$config_valla' WHERE config_id = '".$id."'";
 		$res = $this->_conn->query($query);
 	}
 }
