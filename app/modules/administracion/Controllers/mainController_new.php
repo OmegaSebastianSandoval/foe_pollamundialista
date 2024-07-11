@@ -99,12 +99,15 @@ class Administracion_mainController extends Controllers_Abstract
 	}
 
 
+
 	public function actualizarPuntos()
 	{
 		$this->setLayout("blanco");
 		$usuariosModel = new Administracion_Model_DbTable_Usuariospolla();
 		$resultadosModel = new Administracion_Model_DbTable_Resultados();
 		$configModel = new Administracion_Model_DbTable_Config();
+
+		$usuariosModel->puntos_iniciales(860); //860
 
 		$clasificacionModel = new Administracion_Model_DbTable_Clasificados();
 		$config = $configModel->getById(1);
@@ -116,13 +119,11 @@ class Administracion_mainController extends Controllers_Abstract
 		foreach ($resultados as $resultado) {
 			$usuariosResultados[$resultado->user_id][] = $resultado;
 		}
-
-
-
-
-
-
+		/* echo "<pre>";
+		print_r($usuariosResultados);
+		echo "</pre>"; */
 		$equipos = $this->getEquipos();
+
 
 		$clasificacion = $clasificacionModel->getById(1);
 		$clasificado_octavos_a1 = $clasificacion->clasificado_octavos_a1;
@@ -221,9 +222,8 @@ class Administracion_mainController extends Controllers_Abstract
 			$otros = 0;
 			$aciertos = 0;
 			$usuarioId = $key;
-			// echo $usuarioId;
 			$auditoria = "";
-
+			// echo $usuarioId;
 
 
 
@@ -273,13 +273,22 @@ class Administracion_mainController extends Controllers_Abstract
 							$marcadores++;
 							$puntos += $acertarMarcador1Fase;  // Puntos por acertar al marcador exacto
 
+							$partido = "Marcador " . $equipos[$resultadoInd->marcador_equipo1] . " " . $marcador1Resultado . " - " . $equipos[$resultadoInd->marcador_equipo2] . " " . $marcador2Resultado;
+							$auditoria .= $partido . " | ";
+
 							// Comprobando ganador o empate además del marcador
 							if ($ganadorPartido == $ganadorResultado && $ganadorPartido != -1) {
 								$ganadores++;
 								$puntos += $acertarEquipo1Fase;  // Puntos adicionales por acertar al ganador
+
+								$partido = "Ganador " . $equipos[$resultadoInd->marcador_equipo1] . " - " . $equipos[$resultadoInd->marcador_equipo2];
+								$auditoria .= $partido . " | ";
 							} else if ($marcador1Partido == $marcador2Partido && $ganadorResultado == -1) {
 								$ganadores++;
 								$puntos += $empate1Fase;  // Puntos adicionales por acertar un empate
+
+								$partido = "Empate " . $equipos[$resultadoInd->marcador_equipo1] . " - " . $equipos[$resultadoInd->marcador_equipo2];
+								$auditoria .= $partido . " | ";
 							}
 						} else {
 
@@ -290,10 +299,16 @@ class Administracion_mainController extends Controllers_Abstract
 
 								$ganadores++;
 								$puntos += $acertarEquipo1Fase;  // Puntos por acertar solo al ganador
+
+								$partido = "Ganador " . $equipos[$resultadoInd->marcador_equipo1] . " - " . $equipos[$resultadoInd->marcador_equipo2];
+								$auditoria .= $partido . " | ";
 							} else if ($ganadorPartido != $ganadorResultado && $ganadorPartido == -1) {
 
 								$ganadores++;
 								$puntos += $empate1Fase;  // Puntos por acertar un empate
+
+								$partido = "Empate " . $equipos[$resultadoInd->marcador_equipo1] . " - " . $equipos[$resultadoInd->marcador_equipo2];
+								$auditoria .= $partido . " | ";
 							}
 						}
 					}
@@ -304,7 +319,10 @@ class Administracion_mainController extends Controllers_Abstract
 				//OCTAVOS DE FINAL
 				if ($fase == 2) {
 					// Validación inicial: asegurar que no hay valores vacíos
-					if (!empty($marcador1Resultado) && !empty($marcador2Resultado) && $ganadorResultado !== null) {
+					if (($marcador1Resultado !== null || $marcador1Resultado == 0) &&
+						($marcador2Resultado !== null || $marcador2Resultado == 0) &&
+						$ganadorResultado !== null
+					) {
 						// Comprobando acierto de marcador exacto
 						if ($marcador1Partido == $marcador1Resultado && $marcador2Partido == $marcador2Resultado) {
 							$marcadores++;
@@ -331,19 +349,29 @@ class Administracion_mainController extends Controllers_Abstract
 				if ($fase == 3) {
 
 					// Validación inicial: asegurar que no hay valores vacíos
-					if (!empty($marcador1Resultado) && !empty($marcador2Resultado) && $ganadorResultado !== null) {
+					if (($marcador1Resultado !== null || $marcador1Resultado == 0) &&
+						($marcador2Resultado !== null || $marcador2Resultado == 0) &&
+						$ganadorResultado !== null
+					) {
 
 						// Comprobando acierto de marcador exacto
 						if ($marcador1Partido == $marcador1Resultado && $marcador2Partido == $marcador2Resultado) {
 
 							$marcadores++;
 							$puntos += $acertarMarcadorCuartos;  // Puntos por acertar al marcador exacto
+							$partido = "Marcador CUARTOS " . $equipos[$resultadoInd->marcador_equipo1] . " " . $marcador1Resultado . " - " . $equipos[$resultadoInd->marcador_equipo2] . " " . $marcador2Resultado;
+							$auditoria .= $partido . " | ";
+
 
 							// Comprobando acierto del ganador
 							if ($ganadorPartido == $ganadorResultado && $ganadorPartido != -1) {
 
 								$ganadores++;
 								$puntos += $acertarEquipoCuartos;  // Puntos adicionales por acertar al ganador
+
+
+								$partido = "Ganador CUARTOS " . $equipos[$resultadoInd->marcador_equipo1] . " - " . $equipos[$resultadoInd->marcador_equipo2];
+								$auditoria .= $partido . " | ";
 							}
 						} else {
 
@@ -353,6 +381,8 @@ class Administracion_mainController extends Controllers_Abstract
 
 								$ganadores++;
 								$puntos += $acertarEquipoCuartos;  // Puntos por acertar solo al ganador
+								$partido = "Ganador CUARTOS " . $equipos[$resultadoInd->marcador_equipo1] . " - " . $equipos[$resultadoInd->marcador_equipo2];
+								$auditoria .= $partido . " | ";
 							}
 						}
 					}
@@ -360,39 +390,6 @@ class Administracion_mainController extends Controllers_Abstract
 
 				#region FASE SEMIFINAL
 				//SEMIFINAL
-				if ($fase == 4) {
-
-					// Validación inicial: asegurar que no hay valores vacíos
-					if (!empty($marcador1Resultado) && !empty($marcador2Resultado) && $ganadorResultado !== null) {
-
-						// Comprobando acierto de marcador exacto
-						if ($marcador1Partido == $marcador1Resultado && $marcador2Partido == $marcador2Resultado) {
-
-							$marcadores++;
-							$puntos += $acertarMarcadorSemis;  // Puntos por acertar al marcador exacto
-
-							// Comprobando acierto del ganador
-							if ($ganadorPartido == $ganadorResultado && $ganadorPartido != -1) {
-
-								$ganadores++;
-								$puntos += $acertarEquipoSemis;  // Puntos adicionales por acertar al ganador
-							}
-						} else {
-
-							// Comprobando ganador si no acertó el marcador exacto
-							if ($ganadorPartido == $ganadorResultado && $ganadorPartido != -1) {
-
-
-								$ganadores++;
-								$puntos += $acertarEquipoSemis;  // Puntos por acertar solo al ganador
-							}
-						}
-					}
-				}
-
-
-				#region FASE SEMIFINAL CORREGIDA
-				//SEMIFINAL 
 				if ($fase == 4) {
 
 					// Validación inicial: asegurar que no hay valores vacíos
@@ -406,7 +403,8 @@ class Administracion_mainController extends Controllers_Abstract
 
 							$marcadores++;
 							$puntos += $acertarMarcadorSemis;  // Puntos por acertar al marcador exacto
-							$partido = "Marcador " . $equipos[$resultadoInd->marcador_equipo1] . " " . $marcador1Resultado . " - " . $equipos[$resultadoInd->marcador_equipo2] . " " . $marcador2Resultado;
+
+							$partido = "Marcador SEMIFINAL " . $equipos[$resultadoInd->marcador_equipo1] . " " . $marcador1Resultado . " - " . $equipos[$resultadoInd->marcador_equipo2] . " " . $marcador2Resultado . " puntos sumados : " . $acertarMarcadorSemis . " puntos totales: " . $puntos;
 							$auditoria .= $partido . " | ";
 
 							// Comprobando acierto del ganador
@@ -414,7 +412,8 @@ class Administracion_mainController extends Controllers_Abstract
 
 								$ganadores++;
 								$puntos += $acertarEquipoSemis;  // Puntos adicionales por acertar al ganador
-								$partido = "Ganador " . $equipos[$resultadoInd->marcador_equipo1] . " - " . $equipos[$resultadoInd->marcador_equipo2];
+
+								$partido = "Ganador SEMIFINAL " . $equipos[$resultadoInd->marcador_equipo1] . " - " . $equipos[$resultadoInd->marcador_equipo2] . " " . $marcador2Resultado . " puntos sumados : " . $acertarEquipoSemis . " puntos totales: " . $puntos;
 								$auditoria .= $partido . " | ";
 							}
 						} else {
@@ -425,7 +424,8 @@ class Administracion_mainController extends Controllers_Abstract
 
 								$ganadores++;
 								$puntos += $acertarEquipoSemis;  // Puntos por acertar solo al ganador
-								$partido = "Empate " . $equipos[$resultadoInd->marcador_equipo1] . " - " . $equipos[$resultadoInd->marcador_equipo2];
+
+								$partido = "Ganador SEMIFINAL " . $equipos[$resultadoInd->marcador_equipo1] . " - " . $equipos[$resultadoInd->marcador_equipo2];
 								$auditoria .= $partido . " | ";
 							}
 						}
@@ -437,7 +437,6 @@ class Administracion_mainController extends Controllers_Abstract
 				//FINALES
 				if ($fase == 5) {
 
-					// Validación inicial: asegurar que no hay valores vacíos
 					// Validación inicial: asegurar que no hay valores vacíos
 					if (($marcador1Resultado !== null || $marcador1Resultado == 0) &&
 						($marcador2Resultado !== null || $marcador2Resultado == 0) &&
@@ -452,12 +451,12 @@ class Administracion_mainController extends Controllers_Abstract
 
 							$partido = "Marcador FINALES " . $equipos[$resultadoInd->marcador_equipo1] . " " . $marcador1Resultado . " - " . $equipos[$resultadoInd->marcador_equipo2] . " " . $marcador2Resultado;
 							$auditoria .= $partido . " | ";
-
 							// Comprobando acierto del ganador
 							if ($ganadorPartido == $ganadorResultado && $ganadorPartido != -1) {
 
 								$ganadores++;
 								//$puntos += $acertarEquipoFinales;  // Puntos adicionales por acertar al ganador
+
 								$partido = "Ganador FINALES " . $equipos[$resultadoInd->marcador_equipo1] . " - " . $equipos[$resultadoInd->marcador_equipo2];
 								$auditoria .= $partido . " | ";
 							}
@@ -593,8 +592,8 @@ class Administracion_mainController extends Controllers_Abstract
 				$clasificado_cuartos_e5, $clasificado_cuartos_e6, $clasificado_cuartos_e7, $clasificado_cuartos_e8
 			];
 			/* echo "<pre>";
-print_r($clasificadosCuartos);
-echo "</pre>";
+			print_r($clasificadosCuartos);
+			echo "</pre>";
  */
 
 			// Iterar sobre los equipos de cuartos de final
@@ -647,6 +646,11 @@ echo "</pre>";
 			//$final = $finalModel->getList("usuario = $usuarioId", "")[0];
 			$final = $resultadoPorUsuario[0];
 
+			echo "<pre>";
+			print_r($usuarioId. "-");
+			print_r($final->final_cuarto);
+			echo "</pre>";
+
 			$campeon = $final->final_campeon;
 			if (!empty($campeon) && $campeon == $clasificado_campeon) {
 				$puntos += $acertarCampeon;
@@ -686,19 +690,26 @@ echo "</pre>";
 			}
 
 
+			$usuario = $usuariosModel->getById($usuarioId);
+			$puntos2 = $usuario->user_puntos + $puntos;
 
 			$aciertos = $marcadores + $ganadores + $otros;
-			$usuariosModel->editField($usuarioId, "user_puntos", $puntos);
+			$usuariosModel->editField($usuarioId, "user_puntos", $puntos2);
 			$usuariosModel->editField($usuarioId, "user_marcadores", $marcadores);
 			$usuariosModel->editField($usuarioId, "user_ganadores", $ganadores);
 			$usuariosModel->editField($usuarioId, "user_otros", $otros);
 			$usuariosModel->editField($usuarioId, "user_total", $aciertos);
+			$auditoria = html_entity_decode($auditoria);
+			$usuariosModel->editField($usuarioId, "user_auditoria", $auditoria);
 			if ($_GET['debug'] == 1 || $_GET['debug'] == 2) {
+
 				echo "usuario : " . $usuarioId .  "puntos: " . $puntos;
 				echo "<br>";
 			}
 		}
 	}
+
+
 	private function getEquipos()
 	{
 		$modelData = new Administracion_Model_DbTable_Dependequipos();

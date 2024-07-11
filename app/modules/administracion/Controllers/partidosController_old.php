@@ -197,7 +197,6 @@ class Administracion_partidosController extends Administracion_mainController
 	 */
 	public function updateAction()
 	{
-	    //error_reporting(E_ALL);
 		$this->setLayout('blanco');
 		$csrf = $this->_getSanitizedParam("csrf");
 		if (Session::getInstance()->get('csrf')[$this->_getSanitizedParam("csrf_section")] == $csrf) {
@@ -206,7 +205,7 @@ class Administracion_partidosController extends Administracion_mainController
 			if ($content->id) {
 				$data = $this->getData();
 
-				if ((!empty($data["valor1"]) && !empty($data["valor2"])) && $data["valor1"] == $data["valor2"] || $data["valor1"] ==0 &&  $data["valor2"]==0) {
+				if ((!empty($data["valor1"]) && !empty($data["valor2"])) && $data["valor1"] == $data["valor2"] || $data["valor1"] ==0 &&  $data["valor2"]==0 ) {
 					$data["ganador"] = -1;
 				}
 
@@ -432,6 +431,4 @@ class Administracion_partidosController extends Administracion_mainController
 			Session::getInstance()->set($this->namepageactual, 1);
 		}
 	}
-
-	
 }

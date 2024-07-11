@@ -20,9 +20,9 @@ class Page_mainController extends Controllers_Abstract
 
 		$configModel = new Administracion_Model_DbTable_Config();
 		$config = $configModel->getById(1);
-		$this->_view->config = $config;	
+		$this->_view->config = $config;
 
-		
+
 		$user_user = Session::getInstance()->get("kt_login_user");
 		if (!empty($user_user)) {
 
@@ -32,6 +32,24 @@ class Page_mainController extends Controllers_Abstract
 			$puntos = $existe2->user_puntos ?? 0;
 			Session::getInstance()->set("puntos", $puntos);
 		}
+
+		if ($_SESSION['kt_login_id'] > 1) {
+			// Establecer el tiempo de duración de la sesión a 30 minutos (1800 segundos)
+			$session_timeout = 1800;
+
+
+
+			// Verificar si la sesión ha expirado
+			$elapsed_time = time() - $_SESSION['session_start_time'];
+			if ($elapsed_time >= $session_timeout) {
+				// Si ha excedido el tiempo, destruir la sesión y redirigir al cierre de sesión
+				session_unset();
+				session_destroy();
+				header("Location: /page/index/logout");
+				exit();
+			}
+		}
+
 
 		$informacion = $infopageModel->getById(1);
 		$this->_view->infopage = $informacion;

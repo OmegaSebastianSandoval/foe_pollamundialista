@@ -25,7 +25,6 @@ class Page_inscribaseController extends Page_mainController
 		$cedulasModel = new Administracion_Model_DbTable_Cedulas();
 		$existe = $cedulasModel->getList(" cedula='$cedula' ", "");
 
-
 		if (!$existe) {
 			header("Location:/page/inscribase/?cedula=" . $cedula . "&error=1");
 			return;
@@ -33,8 +32,14 @@ class Page_inscribaseController extends Page_mainController
 		$userModel1 = new Administracion_Model_DbTable_Usuariospolla();
 		$existe2 = $userModel1->getList(" user_user='$cedula' AND user_paso='4' ", "")[0];
 		if (!$existe2) {
-			header("Location:/page/inscribase/registro?cedula=" . $cedula);
-			return;
+			$dateTime = date("Y-m-d H:i:s");
+			if ($dateTime <= '2024-06-19 13:00:00') {
+				header("Location:/page/inscribase/registro?cedula=" . $cedula);
+				return;
+			} else {
+				header("Location:/page/inscribase/?cedula=" . $cedula . "&error=2");
+				return;
+			}
 		} else {
 			//iniciar sesion
 			header("Location:/page/inscribase/login/?cedula=" . $cedula);
@@ -312,6 +317,14 @@ class Page_inscribaseController extends Page_mainController
 			$result = $this->enviar($data2, $token);
 
 
+
+			// Establecer el tiempo de duración de la sesión a 30 minutos (1800 segundos)
+			$session_timeout = 1800;
+
+			// Si la sesión es nueva, guardar el tiempo de inicio
+			if (!isset($_SESSION['session_start_time'])) {
+				$_SESSION['session_start_time'] = time();
+			}
 			if ($result == "-1" or $result == "" or $result == NULL) {
 				$emailModel->getMail()->addAddress("" . $correo);
 				$emailModel->getMail()->addCC("soporteomega@omegawebsystems.com", "");
@@ -320,6 +333,7 @@ class Page_inscribaseController extends Page_mainController
 				$emailModel->getMail()->AltBody = $content;
 				if ($emailModel->sed() == true) {
 					$error = false;
+
 					header("Location: /page/jugar");
 				} else {
 					header("Location: /page/jugar");
@@ -334,6 +348,14 @@ class Page_inscribaseController extends Page_mainController
 				$userModel->deleteRegister($registro->user_id);
 			}
 		}
+		// Establecer el tiempo de duración de la sesión a 30 minutos (1800 segundos)
+		$session_timeout = 1800;
+
+		// Si la sesión es nueva, guardar el tiempo de inicio
+		if (!isset($_SESSION['session_start_time'])) {
+			$_SESSION['session_start_time'] = time();
+		}
+
 		header("Location: /page/jugar");
 	}
 
@@ -365,7 +387,13 @@ class Page_inscribaseController extends Page_mainController
 			Session::getInstance()->set("kt_login_name", $existe2->user_names . " " . $existe2->user_lastnames);
 			Session::getInstance()->set("puntos", $existe2->user_puntos);
 			Session::getInstance()->set("paso", $existe2->user_paso);
+			// Establecer el tiempo de duración de la sesión a 30 minutos (1800 segundos)
+			$session_timeout = 1800;
 
+			// Si la sesión es nueva, guardar el tiempo de inicio
+			if (!isset($_SESSION['session_start_time'])) {
+				$_SESSION['session_start_time'] = time();
+			}
 
 			header("Location:/page/jugar");
 		} else {

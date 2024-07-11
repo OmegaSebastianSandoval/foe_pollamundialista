@@ -235,6 +235,8 @@
 												<?php } ?>
 													
 												" width="20%" style="min-height: 68px;">
+<?php echo $diferencia?>
+<?php echo $fechas[$partido->fecha] ?>
 
 													<?php if ($diferencia >= $this->horasminimo && $fechas[$partido->fecha] >= 1) { ?>
 														<input name="valor1_<?php echo $partido->id; ?>" min="0" max="15" type="number" id="valor1_<?php echo $partido->id; ?>" size="2" value="<?php echo $partido->resultado_valor1; ?>" class="marcador input_field w-100 w-md-50 w-lg-25" <?php if($this->config->config_estado != 1){echo "disabled";}?> />

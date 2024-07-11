@@ -89,7 +89,7 @@ class Administracion_Model_DbTable_Resultados extends Db_Table
 	public function getAllResults()
 	{
 
-		$select = "SELECT
+		$select = 'SELECT
 		r.usuario AS user_id,
 		r.*,
 		o.a1 AS octavos_a1,
@@ -127,8 +127,6 @@ class Administracion_Model_DbTable_Resultados extends Db_Table
 		ot.valla AS otros_valla,
 		ot.goleador AS otros_goleador,
 		p.fase,
-		p.equipo1 AS marcador_equipo1,
-		p.equipo2 AS marcador_equipo2,
 		p.valor1 AS marcador1Partido,
 		p.valor2 AS marcador2Partido,
 		p.ganador AS ganadorPartido
@@ -154,11 +152,8 @@ class Administracion_Model_DbTable_Resultados extends Db_Table
 		f.usuario = u.usuario
 	LEFT JOIN otros ot ON
 		ot.usuario = u.usuario
-		
-	WHERE p.fecha>'2024-06-23'	
-		
 	ORDER BY
-		r.usuario";
+		r.usuario';
 		$res = $this->_conn->query($select)->fetchAsObject();
 		return $res;
 	}

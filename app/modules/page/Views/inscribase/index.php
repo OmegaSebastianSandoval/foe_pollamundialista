@@ -32,6 +32,12 @@
 				El documento no pertenece a un asociado
 				</div>
 			<?php } ?>
+			
+			<?php if ($this->error == "2") { ?>
+				<div class="alert alert-warning w-100" role="alert">
+				Apreciado asóciado, la fecha de registro para la polla FOE BBVA copa américa ya terminó
+				</div>
+			<?php } ?>
 
 			<button class="button">Validar</button>
 		</form>

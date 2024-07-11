@@ -115,9 +115,12 @@ class Page_jugarController extends Page_mainController
 			$partido->resultado_valor2 = $resultado[0]->valor2;
 			$partido->resultado_ganador = $resultado[0]->ganador;
 
-			$partido->diferencia = $this->diferenciaHoras($partido->fecha . " " . $partido->hora);
-			// echo $partido->fecha . " " . $partido->hora;
-			// echo "<br>";
+			$partido->diferencia = $this->diferencia($partido->fecha . " " . $partido->hora, $hoy);
+			 /* echo $partido->fecha . " " . $partido->hora;
+			 echo "<br>";
+			 echo $partido->diferencia;
+			 echo "<br>"; */
+
 		}
 		$this->_view->partidos = $partidos;
 
@@ -150,6 +153,7 @@ class Page_jugarController extends Page_mainController
 		$this->_view->horasminimo = $config->config_horasminimo;
 
 		$partidosEnviados = $_POST['partidos_enviados'] ?? [];
+		$hoy = date("Y-m-d H:i:s");
 
 		// print_r($partidosEnviados);
 		foreach ($partidosEnviados as $partidoId) {
@@ -160,7 +164,7 @@ class Page_jugarController extends Page_mainController
 				$resultados[$partidoId]['partido'] = $partidoId;
 				$resultados[$partidoId]['info'] = $partido;
 
-				$resultados[$partidoId]['info']->diferencia = $this->diferenciaHoras($partido->fecha . " " . $partido->hora);
+				$resultados[$partidoId]['info']->diferencia = $this->diferencia($partido->fecha . " " . $partido->hora, $hoy );
 
 				$resultados[$partidoId]['info']->equipo1 = $equiposModel->getById($partido->equipo1);
 				$resultados[$partidoId]['info']->equipo2 = $equiposModel->getById($partido->equipo2);
@@ -208,7 +212,7 @@ class Page_jugarController extends Page_mainController
 
 
 
-			$partido->diferencia = $this->diferenciaHoras($partido->fecha . " " . $partido->hora);
+			$partido->diferencia = $this->diferencia($partido->fecha . " " . $partido->hora, $data['fecha']);
 
 			if ($data['usuario'] != "" && $data['partido'] != "" && $data['valor1'] >= 0  &&  $data['valor2'] >= 0  && $partido->diferencia >= $horasminimo) {
 				/* echo "<pre>";
@@ -219,7 +223,10 @@ class Page_jugarController extends Page_mainController
 			}
 			if ($data['usuario'] != "" && $data['partido'] != "") {
 				//log
-				$data['log_tabla'] = "resultados";
+				$data['log_tipo'] = "resultados";
+				$data['log_log'] = print_r($data, true);
+      		
+
 				$logModel->insert($data);
 			}
 		}

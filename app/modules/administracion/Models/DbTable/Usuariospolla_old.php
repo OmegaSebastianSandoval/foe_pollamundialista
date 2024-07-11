@@ -92,11 +92,6 @@ class Administracion_Model_DbTable_Usuariospolla extends Db_Table
 		$query = "UPDATE userpolla SET  user_names = '$user_names', user_lastnames = '$user_lastnames', user_email = '$user_email', user_idnumber = '$user_idnumber', user_city = '$user_city', user_country = '$user_country', user_phone = '$user_phone', user_address = '$user_address', user_level = '$user_level', user_state = '$user_state', user_user = '$user_user', user_delete = '$user_delete', user_current_user = '$user_current_user', user_zona = '$user_zona', user_celular = '$user_celular', user_puntos = '$user_puntos', user_marcadores = '$user_marcadores', user_ganadores = '$user_ganadores', user_otros = '$user_otros', user_total = '$user_total', user_cuotas = '$user_cuotas', user_paso = '$user_paso', user_fecha = '$user_fecha'  $changepasword  WHERE user_id = '".$id."'";
 		$res = $this->_conn->query($query);
 	}
-	
-	public function puntos_iniciales($puntos){
-		$query = " UPDATE userpolla SET  user_puntos = '$puntos', user_auditoria='' WHERE 1 ";
-		$res = $this->_conn->query($query);
-	}	
 
 	public function searchUserByUser($user)
     {

@@ -163,7 +163,7 @@ class Administracion_clasificadosController extends Administracion_mainControlle
 			$content = $this->mainModel->getById($id);
 			if($content->clasificado_id){
 				$this->_view->content = $content;
-				$this->_view->routeform = $this->route."/update";
+				$this->_view->routeform = $this->route."/update?debug=1";
 				$title = "Actualizar clasificado";
 				$this->getLayout()->setTitle($title);
 				$this->_view->titlesection = $title;
@@ -224,7 +224,7 @@ class Administracion_clasificadosController extends Administracion_mainControlle
 			$data['log_tipo'] = 'EDITAR CLASIFICADO';
 			$logModel = new Administracion_Model_DbTable_Log();
 			$logModel->insert($data);}
-		header('Location: '.$this->route.''.'');
+		//header('Location: '.$this->route.''.'');
 	}
 
 	/**
